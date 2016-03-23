@@ -8,7 +8,8 @@
 \usepackage[latin1]{inputenc}
 \usepackage[brazil]{babel}
 \usepackage[brazil]{hyperref}
-  
+\usepackage[alf]{abntex2cite}
+
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{lastpage}
@@ -69,7 +70,7 @@ Programa de Pós--Graduação em Engenharia Química
 \clearpage
 \setcounter{page}{1}
 \pagestyle{fancy}
-\headheight 15pt
+\lhead{}
 } % end maketitle 
 \begin{document} 
 \class{EQP 0026--Otimização de Processos}
@@ -84,9 +85,13 @@ Programa de Pós--Graduação em Engenharia Química
  
 \include{Trab1}  
 
-
-%\bibliographystyle{finplain}
-% \bibliographystyle{plain}
-% \bibliography{}
-
+ 
+% \newdimen\bibindent
+% \setlength\bibindent{1.5em} % identaçao das referencias
+% { % Um lineskip menor neste contexto de referencias
+% \rhead{}
+% \baselineskip 4.3mm 
+% % Edite o arquivo bib.bib com as suas próprias referências 
+% \bibliography{bib}
+% } 
 \end{document}
