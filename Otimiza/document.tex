@@ -19,10 +19,13 @@
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{pgfplots}
+\usepackage{tikz}
+\usepgfplotslibrary{colormaps} 
 \usepackage{xifthen}
+\usepackage{gnuplottex}
 
 \usepackage{subfloat}
-\usepackage{float}
+\usepackage{float} 
 \usepackage{subfig}
 \usepackage{varwidth}
 \newcommand{\subfigref}[1]{\hyperref[#1]{Figura~\ref*{#1}}}
@@ -40,12 +43,15 @@
 \newcommand{\classProffessor}[1]{\newcommand{\theclassProffessor}{#1}}
 \usepackage{palatino}
 \renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
+\mathchardef\period=\mathcode`.
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+
 
 % o novo maketitlepage
 \renewcommand{\maketitle}{
 % Primeira página de título  
 \pagestyle{empty}
-\begin{center}  
+\begin{center}   
 \textsc \large  
 Universidade Federal do Rio Grande do Sul \\
 Escola de Engenharia \\
@@ -80,7 +86,7 @@ Programa de Pós--Graduação em Engenharia Química
 % \authori{Aluno2}
 % \authorii{Aluno3}
 % \authoriii{Aluno4}
-
+ 
 \maketitle 
  
 \include{Trab1}  

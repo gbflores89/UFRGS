@@ -1,35 +1,35 @@
-\section*{Definições importantes} 
-\begin{equation*} 
-\renewcommand{\arraystretch}{2.5}
-\begin{aligned}
-f(x)& = \text{polinomio em função do vetor }x  \\ \\
-\nabla f(x) &= \left[
-\begin{array}{c}
-\cfrac{\partial f}{\partial x_1}\\
-\cfrac{\partial f}{\partial x_2}\\
-\vdots\\
-\cfrac{\partial f}{\partial x_n}\\
-\end{array}
-\right]\\ \\
-\nabla^2 f(x) &= \left[
-\begin{array}{cccc}
-\cfrac{\partial^2 f}{\partial x_1 \partial x_1} 
-& \cfrac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots
-& \cfrac{\partial^2 f}{\partial x_1 \partial x_n}\\
-\cfrac{\partial^2 f}{\partial x_2 \partial x_1} 
-& \cfrac{\partial^2 f}{\partial x_2 \partial x_2} & \cdots
-& \cfrac{\partial^2 f}{\partial x_2 \partial x_n}\\
-\vdots & \vdots & \ddots
-& \vdots\\
-\cfrac{\partial^2 f}{\partial x_n \partial x_1} 
-& \cfrac{\partial^2 f}{\partial x_n \partial x_2} & \cdots
-& \cfrac{\partial^2 f}{\partial x_n \partial x_n}\\
-\end{array}
-\right]
-\end{aligned}
-\end{equation*}
-\clearpage
-
+% \section*{Definições importantes} 
+% \begin{equation*} 
+% \renewcommand{\arraystretch}{2.5}
+% \begin{aligned}
+% f(x)& = \text{polinomio em função do vetor }x  \\ \\
+% \nabla f(x) &= \left[
+% \begin{array}{c}
+% \cfrac{\partial f}{\partial x_1}\\
+% \cfrac{\partial f}{\partial x_2}\\
+% \vdots\\
+% \cfrac{\partial f}{\partial x_n}\\
+% \end{array}
+% \right]\\ \\
+% \nabla^2 f(x) &= \left[
+% \begin{array}{cccc}
+% \cfrac{\partial^2 f}{\partial x_1 \partial x_1} 
+% & \cfrac{\partial^2 f}{\partial x_1 \partial x_2} & \cdots
+% & \cfrac{\partial^2 f}{\partial x_1 \partial x_n}\\
+% \cfrac{\partial^2 f}{\partial x_2 \partial x_1} 
+% & \cfrac{\partial^2 f}{\partial x_2 \partial x_2} & \cdots
+% & \cfrac{\partial^2 f}{\partial x_2 \partial x_n}\\
+% \vdots & \vdots & \ddots
+% & \vdots\\
+% \cfrac{\partial^2 f}{\partial x_n \partial x_1} 
+% & \cfrac{\partial^2 f}{\partial x_n \partial x_2} & \cdots
+% & \cfrac{\partial^2 f}{\partial x_n \partial x_n}\\
+% \end{array}
+% \right]
+% \end{aligned}
+% \end{equation*}
+% \clearpage
+% 
 \section {Convexidade}
 Analisar a convexidade das seguintes funções objetivo:
 \begin{align}
@@ -37,6 +37,8 @@ f_1 (x) &= 2x_1 + 3x_2 +6 \label{eq:1f1}\\
 f_2 (x) &= x_1^3 \label{eq:1f2}\\
 f_3 (x) &= x_1^2 + x_1 x_2 + x_2 + 4 \label{eq:1f3}
 \end{align}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 
 \subsection*{\autoref{eq:1f1}}
 \begin{equation}
@@ -100,8 +102,10 @@ Calculando os autovalores da matriz $\nabla^2 f_2(x)$ temos:
 \end{array}
 \right.$
 \end{itemize}
-portanto temos uma função convexa para valores positivos de $x_1$ e não convexa
-para valores de $x_1$ menores que $0$.
+portanto teriamos uma função convexa para valores positivos de $x_1$ e não
+convexa para valores de $x_1$ menores que $0$. Porém, se observarmos a
+\autoref{fig:1f2}-(a), observamos que, em todo o domínio da função, não é
+convexa.
 \begin{figure}[h]
 \centering
 \def\FunctionF(#1){(#1)^3}
@@ -138,8 +142,6 @@ para valores de $x_1$ menores que $0$.
 \label{fig:1f2}
 \end{figure}
 
-
-
 \subsection*{\autoref{eq:1f3}}
 \begin{equation}
 f_3 (x) = x_1^2 + x_1 x_2 + x_2 + 4  \tag{\ref{eq:1f3}}
@@ -151,7 +153,7 @@ Para a Equação \autoref{eq:1f3} temos que o gradiente de $f_3(x)$ é dado por:
 2x_1 + x_2 \\
 x_1 + 2
 \end{array}
-\right]
+\right] 
 \end{equation}
 e para a hessiana temos:
 \begin{equation}
@@ -169,9 +171,29 @@ Calculando os autovalores da matriz $\nabla^2 f_3(x)$ temos para $\forall x$:
   \item $\lambda_2 = 1 - \sqrt{2} = -0.41$
 \end{itemize}
 
-Sendo esta matriz não definida, não é uma função convexa.
-
+Sendo esta matriz não definida, não é uma função convexa. Pela \autoref{fig:1f3}
+também podemos observar que se trata de uma função do tipo cela.
 \clearpage
+\begin{figure} [h]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        , xlabel = $x_1$
+        , ylabel = $x_2$
+        , domain = -20:20
+        , y domain = -20:20
+        , enlargelimits
+        , view = {0}{90}
+        ]
+
+       \addplot3[samples=100, contour gnuplot={levels={400, 200, 100, 25, 4,
+       -25, -50}}, thick] {x^2 + x*y + y + 4};
+    \end{axis}
+\end{tikzpicture}
+\caption{$f_3 (x) = x_1^2 + x_1 x_2 + x_2 + 4$}
+\label{fig:1f3}
+\end{figure}
+
 \section {Pontos de Mínimo e Máximo}
 Analisar pontos de máximo e mínimo das seguintes funções:
 \begin{align}
@@ -180,11 +202,13 @@ f_2 (x) &= -x_1^4 + x_1^3 +20 \label{eq:2f2}\\
 f_3 (x) &= x_1^2 + 2x_1 + 3x_2^2 + 6x_2 + 2 \label{eq:2f3}
 \end{align}
 
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
 \subsection*{\autoref{eq:2f1}}
 \begin{equation}
 f_1 (x) = |x| \tag{\ref{eq:2f1}} 
 \end{equation}
-Para a Equação \autoref{eq:2f1} temos que o gradiente de $f_1(x)$ é dado por:
+Para a \autoref{eq:2f1} temos que o gradiente de $f_1(x)$ é dado por:
 \begin{equation}
 \nabla f_1(x) = \left[
 \begin{array}{cc}
@@ -194,9 +218,9 @@ Para a Equação \autoref{eq:2f1} temos que o gradiente de $f_1(x)$ é dado por:
 \right]
 \end{equation}
 
-Aplicando em $x_1 = 0$ temos $f_1(x) = 0$ e para $\forall$ valores de $x$
-aplicados em $f_1(x)$ são obtidos valores maiores que $0$, como podemos observar
-na \autoref{fig:2f1}:
+Apesar de $f_1(x)$ não ser possuir gradiente contínuo, podemos verificar que
+aplicando em $x_1 = 0$ temos $f_1(x) = 0$ e para $\forall$ $x$, $f_1(x) \geq
+0$, como podemos observar na \autoref{fig:2f1}-(a):
 \begin{figure}[h]
 \centering
 \def\FunctionF(#1){abs(#1)}
@@ -240,9 +264,8 @@ na \autoref{fig:2f1}:
 \label{fig:2f1}
 \end{figure}
 
-Portanto podemos concluir que temos um ponto de mínimo, apesar do gradiente de
-$f_1(x)$ não ser contínuo e portanto nao ser possível o calculo da hessiana de
-$f_1(x)$.
+Portanto podemos concluir que temos um ponto de mínimo, apesar de não ser
+possível o calculo da hessiana de $f_1(x)$.
 
 \subsection*{\autoref{eq:2f2}}
 \begin{equation}
@@ -329,7 +352,7 @@ Aplicada em $x_1 = 0$ em $\nabla f_2(x)$ temos:
 \end{equation}
 onde não podemos concluir se é um ponto de máximo ou mínimo, pois é uma matriz
 indefinida, o que leva a creer que seja um ponto de inflexão. Isto pode ser
-observando na \autoref{fig:2f2} onde é apresentado o comportamento da função
+observando na \autoref{fig:2f2}-(a) onde é apresentado o comportamento da função
 $f_2(x)$.
 
 Aplicada em $x_1 = \cfrac{3}{4}$ em $\nabla f_2(x)$ temos:
@@ -341,7 +364,7 @@ Aplicada em $x_1 = \cfrac{3}{4}$ em $\nabla f_2(x)$ temos:
 \right]
 \end{equation}
 onde podemos concluir diretamente, pelo autovalor único $(\lambda_1 = -2.25)$,
-que se trata de um ponto de máximo, para este caso.
+que se trata de um ponto de máximo.
 
 \subsection*{\autoref{eq:2f3}}
 \begin{equation}
@@ -374,5 +397,25 @@ com os seguintes autovalores:
   \item $\lambda_1 = 6$
   \item $\lambda_2 = 2$
 \end{itemize}
-portanto, um ponto de mínimo.
+portanto, um ponto de mínimo, como pode ser visto na \autoref{fig:2f3}.
+
+\begin{figure} [h]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[
+        , xlabel = $x_1$
+        , ylabel = $x_2$
+        , domain = -20:20
+        , y domain = -20:20
+        , enlargelimits
+        , view = {0}{90}
+        ]
+
+       \addplot3[samples=100, contour gnuplot={levels={200, 100, 25, 3}},
+       thick] {x^2 + 2*x + 3*y^2 + 6*y + 2};
+    \end{axis}
+\end{tikzpicture}
+\caption{$f_3 (x) = x_1^2 + 2x_1 + 3x_2^2 + 6x_2 + 2$}
+\label{fig:2f3}
+\end{figure}
 
