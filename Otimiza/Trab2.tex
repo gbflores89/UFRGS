@@ -1,10 +1,9 @@
-\newenvironment{conditions}[1][where:]
-  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{$\quad$}l}}
+\newenvironment{conditions}[1][]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{  }l}}
   {\end{tabular}\\[\belowdisplayskip]}
+
 \section {Otimização sem restrições}
-\newenvironment{answers}[1][The answers in the reference were:]
-  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l}}
-  {\end{tabular}\\[\belowdisplayskip]}
+
 \subsection{Exercício 6.48 \cite{edgar2001optimization} (página 220)}
   
 The cost of refined oil when shipped via the Malacca Straits to Japan in dollars
@@ -23,13 +22,14 @@ c = c_c &+ c_i + c_x + \frac{2.09\times 10^{4} t^{-0.3017}}{360} + \frac{1.064
 &+ \frac{0.1049q^{0.671}}{360}
 \end{aligned}
 \end{equation}
+were: 
 \begin{conditions}
 a	& annual fixed charges	& {fraction}	&($0.20$) \\
 c_c	& crude oil price		&{\$/kL}		&($12.50$)\\
 c_i	& insurance cost		&{\$/kL}		&($0.50$)\\
 c_x	& customs cost			&{\$/kL}		&($0.90$)\\
 i	& interest rate			&				&($0.10$)\\
-n	& number of ports		&				&($2$)\\
+n	& number of ports		&				&($2$)\\ 
 p	& land price			&{\$/m$^2$}		&($7000$)\\
 q	& refinery capacity		&{bbl/day}		&\\
 t	& tanker size			&{kL} 			&\\
@@ -39,10 +39,11 @@ minimum cost of oil and the optimum tanker size $t$ and refinery size $q$ by
 Newton's method and the quasi-Newton method (note that $1~\text{kL} = 6.29
 ~\text{bbl}$).
 
-\begin{answers}{}
+The answers in the reference were:
+\begin{conditions}
 t & $427000$ dwt $\approx$ $485000$ kL \\
 q & $185000$ bbl/day
-\end{answers}
+\end{conditions}
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 \subsubsection{Newton}
@@ -60,6 +61,7 @@ follows:
 \theta
 \left(\frac{b}{2}+\frac{2\pi}{4}\right)F\left(\frac{b}{2}-\frac{\sqrt{2\pi}}{4}\right)
 \end{equation}
+were: 
 \begin{conditions}
 F(b) & $\displaystyle\int_{-\infty}^b e^{-u^2 / 2\theta^2} \text{d}u$ (normal
 probability function)\\
@@ -68,7 +70,7 @@ c_2& $15$\\
 \theta & $2000$\\
 P &$0.25$
 \end{conditions}
-Find the minimum expected risk and $b$. 
+Find the minimum expected risk and $b$.  
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
 
