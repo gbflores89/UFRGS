@@ -1,7 +1,12 @@
+\newenvironment{conditions}[1][where:]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{$\quad$}l}}
+  {\end{tabular}\\[\belowdisplayskip]}
 \section {Otimização sem restrições}
-
+\newenvironment{answers}[1][The answers in the reference were:]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l}}
+  {\end{tabular}\\[\belowdisplayskip]}
 \subsection{Exercício 6.48 \cite{edgar2001optimization} (página 220)}
- 
+  
 The cost of refined oil when shipped via the Malacca Straits to Japan in dollars
 per kiloliter was given (Uchiyama, 1968) as the linear sum of the crude oil
 cost, the insurance, customs, freight cost for the oil, loading and unloading
@@ -18,9 +23,6 @@ c = c_c &+ c_i + c_x + \frac{2.09\times 10^{4} t^{-0.3017}}{360} + \frac{1.064
 &+ \frac{0.1049q^{0.671}}{360}
 \end{aligned}
 \end{equation}
-\newenvironment{conditions}[1][where:]
-  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{$\quad$}l}}
-  {\end{tabular}\\[\belowdisplayskip]}
 \begin{conditions}
 a	& annual fixed charges	& {fraction}	&($0.20$) \\
 c_c	& crude oil price		&{\$/kL}		&($12.50$)\\
@@ -33,20 +35,20 @@ q	& refinery capacity		&{bbl/day}		&\\
 t	& tanker size			&{kL} 			&\\
 \end{conditions}
 Given the values indicated in parentheses, use a computer code to compute the
-minimum cost of oil and the optimum tanker size t and refinery size q by
-Newton's method and the quasi-Newton method (note that $1 kL = 6.29 bbl$).
+minimum cost of oil and the optimum tanker size $t$ and refinery size $q$ by
+Newton's method and the quasi-Newton method (note that $1~\text{kL} = 6.29
+~\text{bbl}$).
 
-\newenvironment{answers}[1][The answers in the reference were:]
-  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l}}
-  {\end{tabular}\\[\belowdisplayskip]}
-\begin{answers}
+\begin{answers}{}
 t & $427000$ dwt $\approx$ $485000$ kL \\
 q & $185000$ bbl/day
 \end{answers}
 
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
-
-bla 
+\subsubsection{Newton}
+bla
+\subsubsection{quasi-Newton}
+bla  
 
 \clearpage
 
