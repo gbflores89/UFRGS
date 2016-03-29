@@ -1,11 +1,79 @@
 \section {Otimização sem restrições}
 
-\subsection{Exercício 6.48 EHL(2001) (página 220)}
+\subsection{Exercício 6.48 \cite{edgar2001optimization} (página 220)}
+ 
+The cost of refined oil when shipped via the Malacca Straits to Japan in dollars
+per kiloliter was given (Uchiyama, 1968) as the linear sum of the crude oil
+cost, the insurance, customs, freight cost for the oil, loading and unloading
+cost, sea berth cost, submarine pipe cost, storage cost, tank area cost,
+refining cost, and freight cost of products as:
+\begin{equation}
+\begin{aligned}
+c = c_c &+ c_i + c_x + \frac{2.09\times 10^{4} t^{-0.3017}}{360} + \frac{1.064
+\times 10^{6} at^{0.4925}}{52.47q\left(360\right)} \\
+&+ \frac{4.242 \times 10^{4} at^{0.7952} + 1.813 ip \left(nt + 1.2q
+\right)^{0.861}}{52.47q\left(360\right)}\\
+&+ \frac{4.25 \times 10^{3} a\left(nt+1.2q\right) }{52.47q\left(360\right)}
++ \frac{5.042 \times 10^{3} q^{-0.1899}}{360}\\
+&+ \frac{0.1049q^{0.671}}{360}
+\end{aligned}
+\end{equation}
+\newenvironment{conditions}[1][where:]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{$\quad$}l}}
+  {\end{tabular}\\[\belowdisplayskip]}
+\begin{conditions}
+a	& annual fixed charges	& {fraction}	&($0.20$) \\
+c_c	& crude oil price		&{\$/kL}		&($12.50$)\\
+c_i	& insurance cost		&{\$/kL}		&($0.50$)\\
+c_x	& customs cost			&{\$/kL}		&($0.90$)\\
+i	& interest rate			&				&($0.10$)\\
+n	& number of ports		&				&($2$)\\
+p	& land price			&{\$/m$^2$}		&($7000$)\\
+q	& refinery capacity		&{bbl/day}		&\\
+t	& tanker size			&{kL} 			&\\
+\end{conditions}
+Given the values indicated in parentheses, use a computer code to compute the
+minimum cost of oil and the optimum tanker size t and refinery size q by
+Newton's method and the quasi-Newton method (note that $1 kL = 6.29 bbl$).
+
+\newenvironment{answers}[1][The answers in the reference were:]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l}}
+  {\end{tabular}\\[\belowdisplayskip]}
+\begin{answers}
+t & $427000$ dwt $\approx$ $485000$ kL \\
+q & $185000$ bbl/day
+\end{answers}
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+bla 
+
+\clearpage
+
+\subsection{Exercício 6.44 \cite{edgar2001optimization} (página 219)}
+In a decision problem it is desired to minimize the expected risk defined as
+follows: 
+\begin{equation}
+\varepsilon \{\text{risk} \} = \left(1-P\right)c_1\left[1-F(b) \right] + P c_2
+\theta
+\left(\frac{b}{2}+\frac{2\pi}{4}\right)F\left(\frac{b}{2}-\frac{\sqrt{2\pi}}{4}\right)
+\end{equation}
+\begin{conditions}
+F(b) & $\displaystyle\int_{-\infty}^b e^{-u^2 / 2\theta^2} \text{d}u$ (normal
+probability function)\\
+c_1 & $1.25\times10^{5}$\\
+c_2& $15$\\
+\theta & $2000$\\
+P &$0.25$
+\end{conditions}
+Find the minimum expected risk and $b$. 
+
+\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
 bla
 
-\subsection{Exercício 6.44 EHL(2001) (página 219)}
-bla
 
+\clearpage
 \subsection{Exercício Antoine - Etanol}
 bla
 
