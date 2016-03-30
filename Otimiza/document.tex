@@ -9,7 +9,8 @@
 \usepackage[brazil]{babel}
 \usepackage[brazil]{hyperref}
 \usepackage[alf]{abntex2cite}
-
+\usepackage{listings}
+% \usepackage[framed,numbered]{matlab-prettifier}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{lastpage}
@@ -46,6 +47,28 @@
 \renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
 \mathchardef\period=\mathcode`.
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+
+\renewcommand{\lstlistingname}{Código}
+\lstset{ language=Matlab,
+  basicstyle=\ttfamily,
+  basicstyle=\fontfamily{pcr}\fontseries{m}\selectfont\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  commentstyle=\color{teal},
+  numbers=left,
+  showstringspaces=false,
+  morekeywords={matlab2tikz},
+  keywordstyle=\color{blue},%
+  numberstyle=\tiny\sffamily\color{black},
+  frame=tb,
+  numberstyle=\fontfamily{pcr}\fontseries{m}\selectfont\tiny,
+  }
+
+\usepackage{fancyvrb}
+
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{fontsize=\scriptsize,frame=lines,}
 
   
 % o novo maketitlepage
@@ -91,6 +114,7 @@ Programa de Pós--Graduação em Engenharia Química
  
 % \include{Trab1}
 \include{Trab2} 
+% \include{trab2/EHL-6-48/equations} 
  
 \newdimen\bibindent
 \setlength\bibindent{1.5em} % identaçao das referencias

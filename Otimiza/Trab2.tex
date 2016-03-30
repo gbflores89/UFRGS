@@ -12,6 +12,7 @@ cost, the insurance, customs, freight cost for the oil, loading and unloading
 cost, sea berth cost, submarine pipe cost, storage cost, tank area cost,
 refining cost, and freight cost of products as:
 \begin{equation}
+\label{eq:ehl648}
 \begin{aligned}
 c = c_c &+ c_i + c_x + \frac{2.09\times 10^{4} t^{-0.3017}}{360} + \frac{1.064
 \times 10^{6} at^{0.4925}}{52.47q\left(360\right)} \\
@@ -45,11 +46,100 @@ t & $427000$ dwt $\approx$ $485000$ kL \\
 q & $185000$ bbl/day
 \end{conditions}
 
+
 \noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+
+Substituindo os valores de $a$, $c_c$, $c_i$, $c_x$, $i$, $n$ e $p$ na
+\autoref{eq:ehl648} temos:
+\begin{equation}
+\begin{aligned}
+c = 13.9 & + \cfrac{58.055}{{t}^{0.3017}}
++{\cfrac {11.266{t}^{ 0.4925}}{q}}\\
+&+{\cfrac {5.294\times10^{-5}\left( 8484{t}^{
+0.7952}
++1268.4\left( 2t+ 1.2q \right) ^{ 0.861}\right)}{q}}\\
+&+\cfrac{0.630}{{q}^{1.1899}}
++2.914\times10^{-4}{q}^{ 0.671}
+\end{aligned}
+\end{equation}
+onde o gradiente e hessiana de $c$ são dados por:
+\begin{equation}
+\renewcommand{\arraystretch}{2.5}
+\nabla c = \left[
+\begin{array}{c}
+\cfrac{\partial c}{\partial q}\\
+\cfrac{\partial c}{\partial t}\\
+\end{array}
+\right]
+\quad \text{e}\quad
+\nabla^2 c = \left[
+\begin{array}{cc}
+\cfrac{\partial^2 c}{\partial q^2}
+& \cfrac{\partial^2 c}{\partial q \partial t}\\
+\cfrac{\partial^2 c}{\partial t \partial q}
+& \cfrac{\partial^2 c}{\partial t^2}
+\end{array}
+\right]
+\end{equation}
+
+As equações necessárias para $\nabla c$ e $\nabla^2c$ são dadas por:
+\allowdisplaybreaks
+\begin{align}
+&\begin{aligned}
+\cfrac{\partial c}{\partial q}=
+& - {\cfrac {11.266{t}^{ 0.4925}}{{q}^{2}}}+ {\cfrac {0.0694 }{\left(
+ 2t+ 1.2q \right) ^{0.139}q}}\\
+&- {\cfrac {5.294\times10^{-5} \left(8484.0{t}^{ 0.7952}
++ 1268.4 \left( 2\,t+ 1.2\,q \right) ^{ 0.861}\right)}{{q}^{2}}}\\
+&-\cfrac{0.750}{{q}^{2.1899}} + \cfrac{1.955\times10^{-4}}{{q}^{0.329}}
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial c}{\partial t}= &- \cfrac{17.515}{{t}^{1.3017}}
++ {\cfrac {5.548}{t^{0.5075}q}}\\
+&+ {\cfrac {5.294\times10^{-5} \left(\cfrac{6746.476}{{t}^{0.2048}}
++ \cfrac{2184.185}{\left( 2t+ 1.2q \right) ^{0.139}} \right)}{q}}
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial^2 c}{\partial q^2}=
+& {\cfrac {22.531{t}^{ 0.4925}}{{q}^{3}}} - {\cfrac {0.01157}{\left(
+2t+ 1.2q \right) ^{1.139}q}} - {\cfrac {0.1387 }{\left( 2t+ 1.2q
+\right) ^{0.139}{q}^{2}}}\\
+&+ \cfrac {{1.059\times10^{-4}} \left(8484.0{t}^{ 0.7952} +
+1268.4\left(2t+1.2q\right)^{0.861} \right)}{{q}^{3}} \\
+&+ \cfrac{1.642}{{q}^{3.1899}} -
+\cfrac{6.433\times10^{-5}}{{q}^{1.329}}
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial^2 c}{\partial t^2}=& \cfrac{22.800}{{t}^{2.3017}} -
+{\cfrac {2.816}{{t}^{1.5075}q}}\\
+&+  \cfrac {5.294\times10^{-5} \left( -\cfrac{1381.678}{{t}^{1.2048}}
+- \cfrac{607.203}{ \left( 2\,t+ 1.2\,q \right) ^{1.139}}\right) }{q}
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial^2 c}{\partial t \partial q}=& \cfrac{\partial^2 c}{\partial q
+\partial t}= {\cfrac {5.548}{{t}^{0.5075}{q}^{2}}} - {\cfrac {0.01929 }{\left(2t+ 1.2q\right)
+^{1.139}q}} \\
+&- {\cfrac {5.294\times10^{-5} \left(\cfrac{6746.476}{{t}^{0.2048}}
++ \cfrac{2184.184}{\left( 2t+ 1.2q \right) ^{0.139}} \right)}{{q}^{2}}}
+\end{aligned}
+\end{align}
+
+Para a execução dos problema, os Códigos \ref{code:script} e \ref{code:problema}
+implemantados em Matlab foram utilizados
+\lstinputlisting[language=Matlab, caption={Script de execução},
+label={code:script}]{trab2/EHL-6-48/Script.m}
+\lstinputlisting[caption={Problema
+proposto},label={code:problema}]{trab2/EHL-6-48/Problema.m}
+
+\clearpage 
 \subsubsection{Newton}
-bla
+Resultados obtidos utilizando de cada interação obtido pelo método de Newton
+\VerbatimInput[firstline=0, lastline=18]{trab2/EHL-6-48/Resultado1.txt}
+\VerbatimInput{trab2/EHL-6-48/Resultado1.txt}
+
 \subsubsection{quasi-Newton}
-bla  
+Resultados obtidos utilizando o método de quasi-Newton
+\VerbatimInput{trab2/EHL-6-48/Resultado2.txt}
 
 \clearpage
 
