@@ -67,17 +67,17 @@ onde o gradiente e hessiana de $c$ são dados por:
 \renewcommand{\arraystretch}{2.5}
 \nabla c = \left[
 \begin{array}{c}
-\cfrac{\partial c}{\partial q}\\
 \cfrac{\partial c}{\partial t}\\
+\cfrac{\partial c}{\partial q}\\
 \end{array}
 \right]
 \quad \text{e}\quad
 \nabla^2 c = \left[
 \begin{array}{cc}
-\cfrac{\partial^2 c}{\partial q^2}
-& \cfrac{\partial^2 c}{\partial q \partial t}\\
-\cfrac{\partial^2 c}{\partial t \partial q}
-& \cfrac{\partial^2 c}{\partial t^2}
+\cfrac{\partial^2 c}{\partial t^2}
+& \cfrac{\partial^2 c}{\partial t \partial q}\\
+\cfrac{\partial^2 c}{\partial q \partial t}
+& \cfrac{\partial^2 c}{\partial q^2}
 \end{array}
 \right]
 \end{equation}
@@ -86,28 +86,18 @@ As equações necessárias para $\nabla c$ e $\nabla^2c$ são dadas por:
 \allowdisplaybreaks
 \begin{align}
 &\begin{aligned}
-\cfrac{\partial c}{\partial q}=
-& - {\cfrac {11.266{t}^{ 0.4925}}{{q}^{2}}}+ {\cfrac {0.0694 }{\left(
- 2t+ 1.2q \right) ^{0.139}q}}\\
-&- {\cfrac {5.294\times10^{-5} \left(8484.0{t}^{ 0.7952}
-+ 1268.4 \left( 2\,t+ 1.2\,q \right) ^{ 0.861}\right)}{{q}^{2}}}\\
-&-\cfrac{0.750}{{q}^{2.1899}} + \cfrac{1.955\times10^{-4}}{{q}^{0.329}}
-\end{aligned}\\
-&\begin{aligned}
 \cfrac{\partial c}{\partial t}= &- \cfrac{17.515}{{t}^{1.3017}}
 + {\cfrac {5.548}{t^{0.5075}q}}\\
 &+ {\cfrac {5.294\times10^{-5} \left(\cfrac{6746.476}{{t}^{0.2048}}
 + \cfrac{2184.185}{\left( 2t+ 1.2q \right) ^{0.139}} \right)}{q}}
 \end{aligned}\\
 &\begin{aligned}
-\cfrac{\partial^2 c}{\partial q^2}=
-& {\cfrac {22.531{t}^{ 0.4925}}{{q}^{3}}} - {\cfrac {0.01157}{\left(
-2t+ 1.2q \right) ^{1.139}q}} - {\cfrac {0.1387 }{\left( 2t+ 1.2q
-\right) ^{0.139}{q}^{2}}}\\
-&+ \cfrac {{1.059\times10^{-4}} \left(8484.0{t}^{ 0.7952} +
-1268.4\left(2t+1.2q\right)^{0.861} \right)}{{q}^{3}} \\
-&+ \cfrac{1.642}{{q}^{3.1899}} -
-\cfrac{6.433\times10^{-5}}{{q}^{1.329}}
+\cfrac{\partial c}{\partial q}=
+& - {\cfrac {11.266{t}^{ 0.4925}}{{q}^{2}}}+ {\cfrac {0.0694 }{\left(
+ 2t+ 1.2q \right) ^{0.139}q}}\\
+&- {\cfrac {5.294\times10^{-5} \left(8484.0{t}^{ 0.7952}
++ 1268.4 \left( 2\,t+ 1.2\,q \right) ^{ 0.861}\right)}{{q}^{2}}}\\
+&-\cfrac{0.750}{{q}^{2.1899}} + \cfrac{1.955\times10^{-4}}{{q}^{0.329}}
 \end{aligned}\\
 &\begin{aligned}
 \cfrac{\partial^2 c}{\partial t^2}=& \cfrac{22.800}{{t}^{2.3017}} -
@@ -121,25 +111,106 @@ As equações necessárias para $\nabla c$ e $\nabla^2c$ são dadas por:
 ^{1.139}q}} \\
 &- {\cfrac {5.294\times10^{-5} \left(\cfrac{6746.476}{{t}^{0.2048}}
 + \cfrac{2184.184}{\left( 2t+ 1.2q \right) ^{0.139}} \right)}{{q}^{2}}}
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial^2 c}{\partial q^2}=
+& {\cfrac {22.531{t}^{ 0.4925}}{{q}^{3}}} - {\cfrac {0.01157}{\left(
+2t+ 1.2q \right) ^{1.139}q}} - {\cfrac {0.1387 }{\left( 2t+ 1.2q
+\right) ^{0.139}{q}^{2}}}\\
+&+ \cfrac {{1.059\times10^{-4}} \left(8484.0{t}^{ 0.7952} +
+1268.4\left(2t+1.2q\right)^{0.861} \right)}{{q}^{3}} \\
+&+ \cfrac{1.642}{{q}^{3.1899}} -
+\cfrac{6.433\times10^{-5}}{{q}^{1.329}}
 \end{aligned}
-\end{align}
+\end{align} 
+ 
+Para a execução dos problemas, os Códigos \ref{code:c1},
+\ref{code:c2} e \ref{code:c3} foram implemantados em Matlab da
+seguinte maneira:
+\lstinputlisting[caption={Problema proposto},
+label={code:c1}]{trab2/EHL-6-48/ObjFunc.m} 
 
-Para a execução dos problema, os Códigos \ref{code:script} e \ref{code:problema}
-implemantados em Matlab foram utilizados
-\lstinputlisting[language=Matlab, caption={Script de execução},
-label={code:script}]{trab2/EHL-6-48/Script.m}
-\lstinputlisting[caption={Problema
-proposto},label={code:problema}]{trab2/EHL-6-48/Problema.m}
+\lstinputlisting[caption={Gradiente do problema proposto},
+label={code:c2}]{trab2/EHL-6-48/ObjFuncGrad.m} 
 
-\clearpage 
+\lstinputlisting[caption={Hessiana do problema proposto},
+label={code:c3}]{trab2/EHL-6-48/ObjFuncHessian.m} 
+sendo que:
+\begin{conditions}
+x(1) & $t$\\
+x(2) & $q$
+\end{conditions}
+
 \subsubsection{Newton}
-Resultados obtidos utilizando de cada interação obtido pelo método de Newton
-\VerbatimInput[firstline=0, lastline=18]{trab2/EHL-6-48/Resultado1.txt}
-\VerbatimInput{trab2/EHL-6-48/Resultado1.txt}
+Os resultados para o método de Newton foram obtidos com o \autoref{code:script1}
+\lstinputlisting[language=Matlab, caption={Script de execução},
+label={code:script1}]{trab2/EHL-6-48/Script1.m}
 
+Os resultados para cada interação:
+\VerbatimInput[firstline=0, lastline=18]{trab2/EHL-6-48/Resultado1.txt}
+
+\clearpage
+Ponto de mínimo encontrado e função avaliada no ponto ótimo:
+\begin{equation}
+\renewcommand{\arraystretch}{1.2}
+x^* = \left[
+\begin{array}{c}
+502050\\
+80850\\ 
+\end{array}
+\right]
+\quad \text{e}\quad
+c(x^*)=15.9900
+\end{equation}
+\VerbatimInput[firstline=22, lastline=31]{trab2/EHL-6-48/Resultado1.txt}
+
+\emph{Output} final do Matlab, confirmando que foi utilizado o método de Newton
+\VerbatimInput[firstline=39,
+lastline=46]{trab2/EHL-6-48/Resultado1.txt}\bigbreak
+
+
+Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
+$\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
+ponto de mínimo.
+\VerbatimInput[firstline=49, lastline=62]{trab2/EHL-6-48/Resultado1.txt}
+
+\clearpage
 \subsubsection{quasi-Newton}
-Resultados obtidos utilizando o método de quasi-Newton
-\VerbatimInput{trab2/EHL-6-48/Resultado2.txt}
+Os resultados para o método de Newton foram obtidos com o \autoref{code:script2}
+\lstinputlisting[language=Matlab, caption={Script de execução}, 
+label={code:script2}]{trab2/EHL-6-48/Script2.m}
+
+Os resultados para cada interação:
+\VerbatimInput[firstline=0, lastline=4]{trab2/EHL-6-48/Resultado2.txt}
+
+Ponto de mínimo encontrado e função avaliada no ponto ótimo:
+\begin{equation}
+\renewcommand{\arraystretch}{1.2}
+x^* = \left[
+\begin{array}{c}
+500350\\
+89660\\ 
+\end{array}
+\right]
+\quad \text{e}\quad
+c(x^*)=15.9921
+\end{equation}
+\VerbatimInput[firstline=8, lastline=17]{trab2/EHL-6-48/Resultado2.txt}
+
+\emph{Output} final do Matlab, confirmando que foi utilizado um método
+quasi-Newton
+\VerbatimInput[firstline=25,
+lastline=32]{trab2/EHL-6-48/Resultado2.txt}\bigbreak
+
+
+Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
+$\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
+ponto de mínimo.
+\VerbatimInput[firstline=35, lastline=48]{trab2/EHL-6-48/Resultado2.txt}
+% \VerbatimInput[numbers=left]{trab2/EHL-6-48/Resultado2.txt}
+\subsubsection{Conlusão do exercício 6.48}
+Para o problema proposto, o método quasi-Newton apresentou melhor resultado, uma
+vez que foi necessário um menor número de passos para chegar em $x^*$.
 
 \clearpage
 

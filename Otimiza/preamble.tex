@@ -1,0 +1,109 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{ae}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage[brazil]{hyperref}
+\usepackage[alf]{abntex2cite}
+\usepackage{listings}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{lastpage}
+\usepackage{multirow}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepgfplotslibrary{colormaps} 
+\usepackage{xifthen}
+% \usepackage[miktex]{gnuplottex}
+%\usepackage{gnuplottex}
+
+\usepackage{subfloat}
+\usepackage{float} 
+\usepackage{subfig}
+\usepackage{varwidth}
+\newcommand{\subfigref}[1]{\hyperref[#1]{Figura~\ref*{#1}}}
+
+\sisetup{output-decimal-marker = {,}}
+\newcommand{\theauthori}{}
+\newcommand{\theauthorii}{}
+\newcommand{\theauthoriii}{}
+\renewcommand{\title}[1]{\newcommand{\thetitle}{#1}}
+\renewcommand{\author}[1]{\newcommand{\theauthor}{#1}}
+\newcommand{\authori}[1]{\renewcommand{\theauthori}{#1}}
+\newcommand{\authorii}[1]{\renewcommand{\theauthorii}{#1}}
+\newcommand{\authoriii}[1]{\renewcommand{\theauthoriii}{#1}}
+\newcommand{\class}[1]{\newcommand{\theclass}{#1}}
+\newcommand{\classProffessor}[1]{\newcommand{\theclassProffessor}{#1}}
+\usepackage{palatino}
+\renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
+\mathchardef\period=\mathcode`.
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\renewcommand{\lstlistingname}{Código}
+\lstset{ language=Matlab,
+  basicstyle=\ttfamily,
+  basicstyle=\fontfamily{pcr}\fontseries{m}\selectfont\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  commentstyle=\color[rgb]{0,0.5,0},
+  numbers=left,
+  showstringspaces=false,
+  morekeywords={matlab2tikz},
+  keywordstyle=\color{blue},%
+  numberstyle=\tiny\sffamily\color{black},
+  frame=tb,
+  stringstyle=\color[rgb]{0.5,0,0.5},
+  numberstyle=\fontfamily{pcr}\fontseries{m}\selectfont\tiny,
+  aboveskip=10pt,belowskip=20pt
+  }
+  
+
+\usepackage{fancyvrb}
+
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
+{fontsize=\scriptsize,frame=lines,}
+
+
+
+
+% o novo maketitlepage
+\renewcommand{\maketitle}{
+% Primeira página de título  
+\pagestyle{empty}
+\begin{center}   
+\textsc \large  
+Universidade Federal do Rio Grande do Sul \\
+Escola de Engenharia \\
+Departamento de Engenharia Química \\
+Programa de Pós--Graduação em Engenharia Química
+\vfill
+\Large \textsc \theclass \\ Prof:~\theclassProffessor
+\vfill \vfill
+\huge \bfseries \textsc  
+\thetitle
+\vfill \vfill
+\begin{varwidth}[t]{\textwidth}
+\Large \bfseries \textsc 
+\theauthor\\
+\ifthenelse{\equal{\theauthori}{}}{}{\theauthori\\}
+\ifthenelse{\equal{\theauthorii}{}}{}{\theauthorii\\}
+\ifthenelse{\equal{\theauthoriii}{}}{}{\theauthoriii}
+\end{varwidth}
+\vfill \vfill
+\large \textsc Porto Alegre, RS \\ \today
+\end{center}
+\clearpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+\lhead{}
+} % end maketitle 

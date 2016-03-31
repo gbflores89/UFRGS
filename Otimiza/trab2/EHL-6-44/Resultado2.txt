@@ -1,0 +1,48 @@
+                                                        First-order 
+ Iteration  Func-count       f(x)        Step-size       optimality
+     0           3          16.1961                     2.69e-006
+     1          39          15.9921   3.53037e+010      5.85e-007  
+
+Local minimum found.
+
+x =
+
+  1.0e+005 *
+
+    5.0035    0.8996
+
+
+fval =
+
+   15.9921
+
+
+exitflag =
+
+     1
+
+
+output = 
+
+       iterations: 1
+        funcCount: 39
+         stepsize: 3.5304e+010
+    firstorderopt: 5.8529e-007
+        algorithm: 'medium-scale: Quasi-Newton line search'
+          message: [1x471 char]
+
+
+grad =
+
+  1.0e-006 *
+
+   -0.1330
+    0.5853
+
+
+hessian =
+
+  1.0e-010 *
+
+    0.0213   -0.0568
+   -0.0568    0.7230
