@@ -63,18 +63,15 @@
   frame=tb,
   stringstyle=\color[rgb]{0.5,0,0.5},
   numberstyle=\fontfamily{pcr}\fontseries{m}\selectfont\tiny,
-  aboveskip=10pt,belowskip=20pt
+  aboveskip=10pt,belowskip=20pt,
   }
-  
 
 \usepackage{fancyvrb}
-
 % redefine \VerbatimInput
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
-{fontsize=\scriptsize,frame=lines,}
-
-
-
+{fontsize=\scriptsize,frame=single,
+rulecolor=\color{lightgray!80},
+}
 
 % o novo maketitlepage
 \renewcommand{\maketitle}{
