@@ -311,6 +311,24 @@ sendo que:
 \begin{conditions}
 x & $b$
 \end{conditions}
+\begin{figure}[h]
+\center
+\begin{tikzpicture}
+\begin{axis}[
+		xlabel = $b$,
+        ylabel = $\varepsilon\{risk\}$,
+		axis lines = left,
+        enlargelimits=true
+    ]
+\addplot+[mark=none, ultra thick, blue]
+table[meta=eps]
+{trab2/EHL-6-44/ObjFunc.dat};
+\end{axis}
+\end{tikzpicture}
+\caption{Comportamento de $\varepsilon\{risk\}$.}
+\label{fig:ehl6-44}
+\end{figure}
+
 
 \subsubsection*{Solução do Exercício 6.44 utilizando o método de Newton}
 Os resultados para utilisando o método de Newton foram obtidos com o
@@ -371,12 +389,12 @@ quasi-Newton
 \VerbatimInput[firstline=37,
 lastline=44]{trab2/EHL-6-44/Resultado2.txt}\bigbreak
 
-Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
-$\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
+Valores de $\nabla \varepsilon\{risk\}$ (\code{grad}), $\nabla^2
+\varepsilon\{risk\}$ (\code{hessian}) e\\ $\lambda(\nabla^2
+\varepsilon\{risk\})$ (\code{eigHessian}) , confirmando que se trata de um
 ponto de mínimo.
 \VerbatimInput[firstline=47, lastline=59]{trab2/EHL-6-44/Resultado2.txt}
 % \VerbatimInput[numbers=left]{trab2/EHL-6-44/Resultado2.txt} 
-
 
 
 

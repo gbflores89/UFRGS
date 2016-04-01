@@ -117,9 +117,10 @@ convexa.
         axis y line=center,
         axis x line=middle, 
         axis on top=true,
+        legend pos=north west,
     ]
     \addplot [domain=-2:2, samples=51, mark=none, ultra thick, blue] {\FunctionF(x)};
-    \node [right, blue] at (axis cs: 0.5,4.5) {$f_2(x)$};
+    \addlegendentry{$f_2(x)$};
 \end{axis}
 \end{tikzpicture}}
 \hfill
@@ -129,13 +130,14 @@ convexa.
         axis y line=center,
         axis x line=middle, 
         axis on top=true,
+        legend pos=south east,
     ]
     \addplot [domain=-2:2, samples=51, mark=none, ultra thick, orange]
     {\FunctionFd(x)};
+\addlegendentry{$\nabla f_2(x)$};
 	\addplot [domain=-2:2, samples=51, mark=none, ultra thick, red]
 	{\FunctionFdd(x)};
-\node [right, orange] at (axis cs: 0.5,-5) {$\nabla f_2(x)$};
-\node [right, red] at (axis cs: 0.5,-7) {$\nabla^2 f_2(x)$};
+\addlegendentry{$\nabla^2 f_2(x)$};
 \end{axis}
 \end{tikzpicture}}
 \caption{$f_2(x) = x_1^3$.}
@@ -237,9 +239,10 @@ aplicando em $x_1 = 0$ temos $f_1(x) = 0$ e para $\forall$ $x$, $f_1(x) \geq
         xmax=5,
         ymin=0,
         ymax=5,
+        legend pos=south west,
     ]
     \addplot [domain=-5:5, samples=51, mark=none, ultra thick, blue] {\FunctionF(x)};
-    \node [right, blue] at (axis cs: 0.5,4.5) {$f_1(x)$};
+    \addlegendentry{$f_1(x)$};
 \end{axis}
 \end{tikzpicture}}
 \hfill
@@ -253,12 +256,13 @@ aplicando em $x_1 = 0$ temos $f_1(x) = 0$ e para $\forall$ $x$, $f_1(x) \geq
         xmax=5,
         ymin=-1.2,
         ymax=1.2,
+        legend pos=north west,
     ]
     \addplot [domain=0:5, samples=51, mark=none, ultra thick, orange]
     {\FunctionFd(x)};
 	\addplot [domain=-5:0, samples=51, mark=none, ultra thick, orange]
 	{\FunctionFdd(x)}; 
-\node [right, orange] at (axis cs: 0.5,0.5) {$\nabla f_1(x)$};
+\addlegendentry{$\nabla f_1(x)$};
 \end{axis}
 \end{tikzpicture}}
 \caption{$f_1(x) = |x|$.}
@@ -308,7 +312,7 @@ possível observar na \autoref{fig:2f2}.
     ]
     \addplot [domain=-2:2.5, samples=100, 
     mark=none, ultra thick, blue]{\FunctionF(x)};
-\node [right, blue] at (axis cs: 0.5,20.5) {$f_2(x)$};
+\addlegendentry{$f_2(x)$};
 \end{axis}
 \end{tikzpicture}}
 \subfloat[$\nabla f_2(x)$ e $\nabla^2 f_2(x)$]
@@ -324,10 +328,10 @@ possível observar na \autoref{fig:2f2}.
     ]
     \addplot [domain=-2:2.5, samples=100, 
     mark=none, ultra thick, orange]{\FunctionFd(x)};
+\addlegendentry{$\nabla f_2(x)$};
     \addplot [domain=-2:2.5, samples=100, 
     mark=none, ultra thick, red]{\FunctionFdd(x)};
-\node [right, orange] at (axis cs: 0.1,1.5) {$\nabla f_2(x)$};
-\node [right, red] at (axis cs: 0.1,1.0) {$\nabla^2 f_2(x)$};
+\addlegendentry{$\nabla^2 f_2(x)$};
 \end{axis}
 \end{tikzpicture}}
 \caption{$f_2 (x) = -x_1^4 + x_1^3 +20$.}
