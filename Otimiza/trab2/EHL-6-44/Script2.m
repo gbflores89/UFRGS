@@ -1,6 +1,6 @@
 clc; clear; % limpar console
 fun = @ObjFunc; % definição do problema
-x0 = [485000,185000]; % valor inicial
+x0 = 0; % valor inicial
 fval0 = fun(x0); % função objetivo avaliado no valor inicial 
 opt = optimset('fminunc');
 opt = optimset(opt,'Display','iter'); 

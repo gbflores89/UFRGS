@@ -44,10 +44,57 @@
 \newcommand{\classProffessor}[1]{\newcommand{\theclassProffessor}{#1}}
 \usepackage{palatino}
 \renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
+
 \mathchardef\period=\mathcode`.
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\diff}{d}
 
+\allowdisplaybreaks
+\newenvironment{conditions}[1][]
+  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{  }l}}
+  {\end{tabular}\\}
+
+  \usetikzlibrary{shapes,shadows}
+  \tikzstyle{exercisebox} = [draw=black, rectangle, 
+  inner sep=10pt, style=rounded corners, drop shadow={fill=gray,
+  opacity=1}]
+  \tikzstyle{exercisetitle} =[fill=white]
+ \newcommand{\boxexercise}[2]{ 
+    \begin{center}
+      \begin{tikzpicture}
+        \node [exercisebox, fill=black!1!] (box)
+        {\begin{minipage}{0.9\linewidth}
+            \setlength{\parindent}{1em}
+            \footnotesize #2
+          \end{minipage}};
+        \node[exercisetitle, right=10pt, draw=black, style=rounded corners] at
+        (box.north west) {Exercício: #1};
+      \end{tikzpicture}
+    \end{center}
+  }
+
+  \tikzstyle{examplebox} = [draw=black, rectangle, 
+  inner sep=10pt, style=rounded corners, drop shadow={fill=gray,
+  opacity=1}]
+  \tikzstyle{exampletitle} =[fill=white]
+ \newcommand{\boxexample}[2]{ 
+    \begin{center}
+      \begin{tikzpicture}
+        \node [examplebox, fill=green!10!] (box)
+        {\begin{minipage}{0.9\linewidth}
+            \setlength{\parindent}{1em}
+            \footnotesize #2
+          \end{minipage}};
+        \node[exampletitle, right=10pt, draw=black, style=rounded corners] at
+        (box.north west) {Exemplo: #1};
+      \end{tikzpicture}
+    \end{center}
+  }
+
+\onehalfspacing
 \newcommand{\code}[1]{\texttt{#1}}
+
 \renewcommand{\lstlistingname}{Código}
 \lstset{ language=Matlab,
   basicstyle=\ttfamily,

@@ -1,16 +1,13 @@
-\newenvironment{conditions}[1][]
-  {#1 \begin{tabular}[t]{>{$}r<{$} @{${}={}$} l @{$\quad$}r @{  }l}}
-  {\end{tabular}\\[\belowdisplayskip]}
 
 \section {Otimização sem restrições}
-
-\subsection{Exercício 6.48 \cite{edgar2001optimization} (página 220)}
-  
-The cost of refined oil when shipped via the Malacca Straits to Japan in dollars
-per kiloliter was given (Uchiyama, 1968) as the linear sum of the crude oil
-cost, the insurance, customs, freight cost for the oil, loading and unloading
-cost, sea berth cost, submarine pipe cost, storage cost, tank area cost,
-refining cost, and freight cost of products as:
+ 
+\subsection{Exercício 6.48 \cite{edgar2001optimization}}
+\boxexercise{6.48 (EHL, \citeyear{edgar2001optimization})}
+{The cost of refined oil when shipped via the Malacca Straits to Japan in
+dollars per kiloliter was given (Uchiyama, 1968) as the linear sum of the crude
+oil cost, the insurance, customs, freight cost for the oil, loading and
+unloading cost, sea berth cost, submarine pipe cost, storage cost, tank area
+cost, refining cost, and freight cost of products as:
 \begin{equation}
 \label{eq:ehl648}
 \begin{aligned}
@@ -45,9 +42,7 @@ The answers in the reference were:
 t & $427000$ dwt $\approx$ $485000$ kL \\
 q & $185000$ bbl/day
 \end{conditions}
-
-
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+}
 
 Substituindo os valores de $a$, $c_c$, $c_i$, $c_x$, $i$, $n$ e $p$ na
 \autoref{eq:ehl648} temos:
@@ -83,7 +78,6 @@ onde o gradiente e hessiana de $c$ são dados por:
 \end{equation}
 
 As equações necessárias para $\nabla c$ e $\nabla^2c$ são dadas por:
-\allowdisplaybreaks
 \begin{align}
 &\begin{aligned}
 \cfrac{\partial c}{\partial t}= &- \cfrac{17.515}{{t}^{1.3017}}
@@ -124,17 +118,18 @@ As equações necessárias para $\nabla c$ e $\nabla^2c$ são dadas por:
 \end{aligned}
 \end{align} 
  
-Para a execução dos problemas, os Códigos \ref{code:c1},
-\ref{code:c2} e \ref{code:c3} foram implemantados em Matlab da
+Para a execução dos problemas, os Códigos \ref{code:ehl648c1},
+\ref{code:ehl648c2} e \ref{code:ehl648c3} foram implemantados em Matlab da
 seguinte maneira:
 \lstinputlisting[caption={Problema proposto},
-label={code:c1}]{trab2/EHL-6-48/ObjFunc.m} 
+label={code:ehl648c1}]{trab2/EHL-6-48/ObjFunc.m} 
 
 \lstinputlisting[caption={Gradiente do problema proposto},
-label={code:c2}]{trab2/EHL-6-48/ObjFuncGrad.m} 
+label={code:ehl648c2}]{trab2/EHL-6-48/ObjFuncGrad.m} 
 
+\clearpage
 \lstinputlisting[caption={Hessiana do problema proposto},
-label={code:c3}]{trab2/EHL-6-48/ObjFuncHessian.m} 
+label={code:ehl648c3}]{trab2/EHL-6-48/ObjFuncHessian.m} 
 sendo que:
 \begin{conditions}
 x(1) & $t$\\
@@ -142,14 +137,14 @@ x(2) & $q$
 \end{conditions}
 
 \subsubsection{Newton}
-Os resultados para o método de Newton foram obtidos com o \autoref{code:script1}
-\lstinputlisting[language=Matlab, caption={Script de execução},
-label={code:script1}]{trab2/EHL-6-48/Script1.m}
-
-Os resultados para cada interação:
-\VerbatimInput[firstline=0, lastline=18]{trab2/EHL-6-48/Resultado1.txt}
+Os resultados para o método de Newton foram obtidos com o
+\autoref{code:ehl648script1} \lstinputlisting[language=Matlab, caption={Script de execução},
+label={code:ehl648script1}]{trab2/EHL-6-48/Script1.m}
 
 \clearpage
+Os resultados para cada interação:
+\VerbatimInput[firstline=2, lastline=19]{trab2/EHL-6-48/Resultado1.txt}
+
 Ponto de mínimo encontrado e função avaliada no ponto ótimo:
 \begin{equation}
 \renewcommand{\arraystretch}{1.2}
@@ -162,26 +157,26 @@ x^* = \left[
 \quad \text{e}\quad
 c(x^*)=15.9900
 \end{equation}
-\VerbatimInput[firstline=22, lastline=31]{trab2/EHL-6-48/Resultado1.txt}
+\VerbatimInput[firstline=29, lastline=38]{trab2/EHL-6-48/Resultado1.txt}
 
 \emph{Output} final do Matlab, confirmando que foi utilizado o método de Newton
-\VerbatimInput[firstline=39,
-lastline=46]{trab2/EHL-6-48/Resultado1.txt}\bigbreak
+\VerbatimInput[firstline=46,
+lastline=53]{trab2/EHL-6-48/Resultado1.txt}\bigbreak
 
 
 Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
 $\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
 ponto de mínimo.
-\VerbatimInput[firstline=49, lastline=62]{trab2/EHL-6-48/Resultado1.txt}
+\VerbatimInput[firstline=56, lastline=79]{trab2/EHL-6-48/Resultado1.txt}
 
 \clearpage
 \subsubsection{quasi-Newton}
-Os resultados para o método de Newton foram obtidos com o \autoref{code:script2}
-\lstinputlisting[language=Matlab, caption={Script de execução}, 
-label={code:script2}]{trab2/EHL-6-48/Script2.m}
+Os resultados para o método de Newton foram obtidos com o
+\autoref{code:ehl648script2} \lstinputlisting[language=Matlab, caption={Script de execução}, 
+label={code:ehl648script2}]{trab2/EHL-6-48/Script2.m} 
 
 Os resultados para cada interação:
-\VerbatimInput[firstline=0, lastline=4]{trab2/EHL-6-48/Resultado2.txt}
+\VerbatimInput[firstline=5, lastline=8]{trab2/EHL-6-48/Resultado2.txt}
 
 Ponto de mínimo encontrado e função avaliada no ponto ótimo:
 \begin{equation}
@@ -195,50 +190,198 @@ x^* = \left[
 \quad \text{e}\quad
 c(x^*)=15.9921
 \end{equation}
-\VerbatimInput[firstline=8, lastline=17]{trab2/EHL-6-48/Resultado2.txt}
+\VerbatimInput[firstline=20, lastline=29]{trab2/EHL-6-48/Resultado2.txt}
 
+\clearpage
 \emph{Output} final do Matlab, confirmando que foi utilizado um método
 quasi-Newton
-\VerbatimInput[firstline=25,
-lastline=32]{trab2/EHL-6-48/Resultado2.txt}\bigbreak
+\VerbatimInput[firstline=37,
+lastline=44]{trab2/EHL-6-48/Resultado2.txt}\bigbreak
 
 
 Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
 $\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
 ponto de mínimo.
-\VerbatimInput[firstline=35, lastline=48]{trab2/EHL-6-48/Resultado2.txt}
+\VerbatimInput[firstline=47, lastline=68]{trab2/EHL-6-48/Resultado2.txt}
 % \VerbatimInput[numbers=left]{trab2/EHL-6-48/Resultado2.txt}
 
-\subsubsection{Conlusão do exercício 6.48}
+\subsubsection{Conlusão do Exercício 6.48}
 Para o problema proposto, o método quasi-Newton apresentou melhor resultado, uma
 vez que foi necessário um menor número de passos para chegar em $x^*$.
 
 \clearpage
-\subsection{Exercício 6.44 \cite{edgar2001optimization} (página 219)}
-In a decision problem it is desired to minimize the expected risk defined as
-follows: 
+\subsection{Exercício 6.44 \cite{edgar2001optimization}}
+\boxexercise{6.44}{
+In a decision problem it is desired to minimize the
+expected risk defined as follows: 
 \begin{equation}
+\label{eq:ehl644}
 \varepsilon \{\text{risk} \} = \left(1-P\right)c_1\left[1-F(b) \right] + P c_2
 \theta
 \left(\frac{b}{2}+\frac{2\pi}{4}\right)F\left(\frac{b}{2}-\frac{\sqrt{2\pi}}{4}\right)
 \end{equation}
 were: 
 \begin{conditions}
-F(b) & $\displaystyle\int_{-\infty}^b e^{-u^2 / 2\theta^2} \text{d}u$ (normal
+F(b) & $\displaystyle\int_{-\infty}^b e^{-u^2 / 2\theta^2} \diff u$ (normal
 probability function)\\
 c_1 & $1.25\times10^{5}$\\
 c_2& $15$\\
 \theta & $2000$\\
 P &$0.25$
 \end{conditions}
+
 Find the minimum expected risk and $b$.  
+}
 
-\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}
+Antes da substituição dos valores de $F(b)$, $c_1$, $c_2$, $\theta$ e $P$ na
+\autoref{eq:ehl644} devemos encontar um melhor valor para $F(b)$.
+\begin{equation}
+\label{eq:ehl644f}
+F(b) = \int_{-\infty}^b \exp{\left(-\frac{u^2}{2\theta^2}\right)} \diff u
+\end{equation}
+integrando e aplicando os limites na \autoref{eq:ehl644f} temos:
+\begin{equation}
+\label{eq:ehl644f2}
+F(b) = \sqrt{\dfrac{\pi}{2}} \left(\theta
+\erf\left(\dfrac{b}{\theta\sqrt{2}}\right)
++\frac{1}{\sqrt{\dfrac{1}{\theta^2}}}
+\right)
+\end{equation}
+onde a função $\erf$ é tabelada e dada por:
+\begin{equation}
+\erf\left(x\right) = \frac{2}{\sqrt{\pi}}\int_0^x \exp{\left(-t^2\right)}\diff t
+\end{equation}
 
-bla
+Assim, é facilmente obtida aexpressão de $\varepsilon\{risk\}$, como
+segue:
+\newcommand{\auxalpha}{\left(\alpha_{\rm{aux}}\right)}
+\newcommand{\auxbeta}{\left(\beta_{\rm{aux}}\right)}
+\newcommand{\auxgamma}{\left(\gamma_{\rm{aux}}\right)}
+\newcommand{\auxdelta}{\left(\delta_{\rm{aux}}\right)}
+\begin{equation}
+\label{eq:ehl644-2}
+\varepsilon\{risk\} = \left[93750 -
+46875 \auxalpha\right]
++3750\auxalpha\auxbeta\auxgamma
+\end{equation}
+onde $\auxalpha$, $\auxbeta$ e $\auxgamma$ são variaveis auxiliares dadas por:
+\begin{align}
+\auxalpha &= \sqrt{2\pi}\left(2000\erf\left(\frac{b\sqrt{2}}{4000}
+\right)+\sqrt{4\times10^6}\right)\\
+\auxbeta &= \left(\frac{b+\pi}{2}\right)\\
+\auxgamma &= \left(\frac{2b+\sqrt{2\pi}}{4} \right)
+\end{align}
+
+A partir da \autoref{eq:ehl644-2} podemos obter os valores de
+$\nabla\varepsilon\{risk\}$ e $\nabla^2\varepsilon\{risk\}$ como seguem:
+\begin{align}
+&\begin{aligned}
+\cfrac{\partial \varepsilon\{risk\}}{\partial b}= &
+-93750 \exp\auxdelta 
++ 1875 \auxalpha \auxgamma\\
+&+7500\auxbeta \auxgamma \exp\auxdelta\\
+&+1875\auxalpha\auxbeta
+\end{aligned}\\
+&\begin{aligned}
+\cfrac{\partial^2 \varepsilon\{risk\}}{\partial b^2}=&
+0.0234375 b \exp\auxdelta \\
+&+7500\auxgamma\exp\auxdelta
++1875\auxalpha \\
+&- 0.001875\auxbeta\auxgamma 
+b \exp\auxdelta
+\end{aligned}
+\end{align} 
+onde $\auxdelta$ também é uma variável auxiliar dada por:
+\begin{equation}
+\auxdelta = {\left(-\frac{b^2}{8\times10^6}\right)}
+\end{equation}
+
+Para a execução do Exercício 6.44, os Códigos \ref{code:ehl644c1},
+\ref{code:ehl644c2} e \ref{code:ehl644c3} foram implemantados em Matlab da
+seguinte maneira:
+\lstinputlisting[caption={Problema proposto},
+label={code:ehl644c1}]{trab2/EHL-6-44/ObjFunc.m} 
+
+\clearpage
+\lstinputlisting[caption={Gradiente do problema proposto},
+label={code:ehl644c2}]{trab2/EHL-6-44/ObjFuncGrad.m} 
+\lstinputlisting[caption={Hessiana do problema proposto},
+label={code:ehl644c3}]{trab2/EHL-6-44/ObjFuncHessian.m} 
+sendo que:
+\begin{conditions}
+x & $b$
+\end{conditions}
+
+\subsubsection*{Solução do Exercício 6.44 utilizando o método de Newton}
+Os resultados para utilisando o método de Newton foram obtidos com o
+\autoref{code:ehl644script1} 
+\lstinputlisting[language=Matlab, caption={Script de execução},
+label={code:ehl644script1}]{trab2/EHL-6-44/Script1.m} 
+
+\clearpage
+Os resultados para cada interação:
+\VerbatimInput[firstline=2, lastline=8]{trab2/EHL-6-44/Resultado1.txt}
+
+Ponto de mínimo encontrado e função avaliada no ponto ótimo:
+\begin{equation}
+\renewcommand{\arraystretch}{1.2}
+x^* = \left[
+\begin{array}{c}
+2.1873
+\end{array}
+\right]
+\quad \text{e}\quad
+\varepsilon\{risk\}(x^*)=-2.3888\times 10^8
+\end{equation}
+\VerbatimInput[firstline=16, lastline=23]{trab2/EHL-6-44/Resultado1.txt}
+
+\emph{Output} final do Matlab, confirmando que foi utilizado o método de Newton
+\VerbatimInput[firstline=31,
+lastline=38]{trab2/EHL-6-44/Resultado1.txt}
+\clearpage
+Valores de $\nabla \varepsilon\{risk\}$ (\code{grad}), $\nabla^2
+\varepsilon\{risk\}$ (\code{hessian}) e\\ $\lambda(\nabla^2
+\varepsilon\{risk\})$ (\code{eigHessian}) , confirmando que se trata de um ponto de mínimo.
+\VerbatimInput[firstline=41, lastline=53]{trab2/EHL-6-44/Resultado1.txt}
+% \VerbatimInput[numbers=left]{trab2/EHL-6-44/Resultado1.txt}
+
+\subsubsection*{Solução do Exercício 6.44 utilizando um método quasi-Newton}
+Os resultados para o método de Newton foram obtidos com o 
+\autoref{code:ehl644script2} \lstinputlisting[language=Matlab, caption={Script de execução}, 
+label={code:ehl644script2}]{trab2/EHL-6-44/Script2.m} 
+
+Os resultados para cada interação:
+\VerbatimInput[firstline=5, lastline=12]{trab2/EHL-6-44/Resultado2.txt}
+
+Ponto de mínimo encontrado e função avaliada no ponto ótimo:
+\begin{equation}
+\renewcommand{\arraystretch}{1.2}
+x^* = \left[
+\begin{array}{c}
+2.1873
+\end{array}
+\right]
+\quad \text{e}\quad
+\varepsilon\{risk\}(x^*)=-2.3888\times 10^8
+\end{equation}
+\VerbatimInput[firstline=22, lastline=29]{trab2/EHL-6-44/Resultado2.txt}
+
+\emph{Output} final do Matlab, confirmando que foi utilizado um método
+quasi-Newton
+\VerbatimInput[firstline=37,
+lastline=44]{trab2/EHL-6-44/Resultado2.txt}\bigbreak
+
+Valores de $\nabla c$ (\code{grad}), $\nabla^2 c$ (\code{hessian}) e
+$\lambda(\nabla^2 c)$ (\code{eigHessian}) , confirmando que se trata de um
+ponto de mínimo.
+\VerbatimInput[firstline=47, lastline=59]{trab2/EHL-6-44/Resultado2.txt}
+% \VerbatimInput[numbers=left]{trab2/EHL-6-44/Resultado2.txt} 
+
+
 
 
 \clearpage
+
 \subsection{Exercício Antoine - Etanol}
 bla
 

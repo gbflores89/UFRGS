@@ -1,6 +1,6 @@
 function [f,g] = ObjFunc(x)
 % Calculate objective f
-f = 13.9+58.05555556/x(1)^.3017+11.26569680*x(1)^.4925/x(2)+(0.5294030451e-4*(8484.00000*x(1)^.7952+1268.40000*(2*x(1)+1.2*x(2))^.861))/x(2)+.6302396198/x(2)^1.1899+0.2913888889e-3*x(2)^.671;
+f = [93750.0000-46875.00000*sqrt(2)*sqrt(pi)*(2000*erf((1/4000)*x*sqrt(2))+sqrt(4000000))]+(3750.000000*((1/2)*x+(1/2)*pi))*sqrt(2)*sqrt(pi)*(2000*erf((1/4000)*x*sqrt(2))+sqrt(4000000))*((1/2)*x+(1/4)*sqrt(2)*sqrt(pi));
 if nargout > 1 % gradient required
-    g = ObjFuncGrad(x)
+    g = ObjFuncGrad(x);
 end

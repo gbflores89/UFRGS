@@ -1,20 +1,32 @@
+Warning: Gradient must be provided for trust-region method;
+  using line-search method instead. 
+> In fminunc at 356
+  In Script2 at 8
                                                         First-order 
  Iteration  Func-count       f(x)        Step-size       optimality
-     0           3          16.1961                     2.69e-006
-     1          39          15.9921   3.53037e+010      5.85e-007  
+     0           2    -2.16397e+008                     2.06e+007
+     1           4     -2.3226e+008    4.8616e-008      1.12e+007  
+     2           6    -2.38883e+008              1      1.46e+004  
+     3           8    -2.38883e+008              1           10.1  
 
 Local minimum found.
 
+Optimization completed because the size of the gradient is less than
+the selected value of the function tolerance.
+
+<stopping criteria details>
+
+
+Computing finite-difference Hessian using user-supplied objective function.
+
 x =
 
-  1.0e+005 *
-
-    5.0035    0.8996
+   -2.1873
 
 
 fval =
 
-   15.9921
+ -2.3888e+008
 
 
 exitflag =
@@ -24,25 +36,26 @@ exitflag =
 
 output = 
 
-       iterations: 1
-        funcCount: 39
-         stepsize: 3.5304e+010
-    firstorderopt: 5.8529e-007
+       iterations: 3
+        funcCount: 8
+         stepsize: 1
+    firstorderopt: 10.0581
         algorithm: 'medium-scale: Quasi-Newton line search'
           message: [1x471 char]
 
 
 grad =
 
-  1.0e-006 *
-
-   -0.1330
-    0.5853
+   10.0581
 
 
 hessian =
 
-  1.0e-010 *
+  9.3917e+006
 
-    0.0213   -0.0568
-   -0.0568    0.7230
+
+eigHessian =
+
+  9.3917e+006
+
+>> 

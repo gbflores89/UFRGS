@@ -1,9 +1,21 @@
+Warning: Gradient must be provided for trust-region method;
+  using line-search method instead. 
+> In fminunc at 356
+  In Script2 at 8
                                                         First-order 
  Iteration  Func-count       f(x)        Step-size       optimality
      0           3          16.1961                     2.69e-006
      1          39          15.9921   3.53037e+010      5.85e-007  
 
 Local minimum found.
+
+Optimization completed because the size of the gradient is less than
+the selected value of the function tolerance.
+
+<stopping criteria details>
+
+
+Computing finite-difference Hessian using user-supplied objective function.
 
 x =
 
@@ -46,3 +58,13 @@ hessian =
 
     0.0213   -0.0568
    -0.0568    0.7230
+
+
+eigHessian =
+
+  1.0e-010 *
+
+    0.0167
+    0.7276
+
+>> 
