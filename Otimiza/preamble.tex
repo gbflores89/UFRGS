@@ -64,9 +64,9 @@
     \begin{center}
       \begin{tikzpicture}
         \node [exercisebox, fill=black!1!] (box)
-        {\begin{minipage}{0.9\linewidth}
+        {\begin{minipage}{0.9\textwidth}
             \setlength{\parindent}{1em}
-            \footnotesize #2
+            \footnotesize  \vspace{\belowdisplayskip} #2
           \end{minipage}};
         \node[exercisetitle, right=10pt, draw=black, style=rounded corners] at
         (box.north west) {Exercício: #1};
@@ -82,9 +82,9 @@
     \begin{center}
       \begin{tikzpicture}
         \node [examplebox, fill=green!10!] (box)
-        {\begin{minipage}{0.9\linewidth}
+        {\begin{minipage}{0.9\textwidth}
             \setlength{\parindent}{1em}
-            \footnotesize #2
+            \footnotesize \vspace{\belowdisplayskip} #2
           \end{minipage}};
         \node[exampletitle, right=10pt, draw=black, style=rounded corners] at
         (box.north west) {Exemplo: #1};
