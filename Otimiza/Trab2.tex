@@ -2,7 +2,7 @@
 \section {Otimização sem restrições}
  
 \subsection{Exercício 6.48 \cite{edgar2001optimization}}
-\boxexercise{6.48 (EHL, \citeyear{edgar2001optimization})}
+\boxexercise{6.48}
 {The cost of refined oil when shipped via the Malacca Straits to Japan in
 dollars per kiloliter was given (Uchiyama, 1968) as the linear sum of the crude
 oil cost, the insurance, customs, freight cost for the oil, loading and
@@ -138,12 +138,13 @@ x(2) & $q$
 
 \subsubsection{Newton}
 Os resultados para o método de Newton foram obtidos com o
-\autoref{code:ehl648script1} \lstinputlisting[language=Matlab, caption={Script de execução},
+\autoref{code:ehl648script1} \lstinputlisting[language=Matlab, caption={Script
+de execução para a resolução do problema utilizando o método de Newton},
 label={code:ehl648script1}]{trab2/EHL-6-48/Script1.m}
 
 \clearpage
 Os resultados para cada interação:
-\VerbatimInput[firstline=2, lastline=19]{trab2/EHL-6-48/Resultado1.txt}
+\VerbatimInput[firstline=2, lastline=21]{trab2/EHL-6-48/Resultado1.txt}
 
 Ponto de mínimo encontrado e função avaliada no ponto ótimo:
 \begin{equation}
@@ -158,6 +159,7 @@ x^* = \left[
 c(x^*)=15.9900
 \end{equation}
 \VerbatimInput[firstline=29, lastline=38]{trab2/EHL-6-48/Resultado1.txt}
+\clearpage
 
 \emph{Output} final do Matlab, confirmando que foi utilizado o método de Newton
 \VerbatimInput[firstline=46,
@@ -171,12 +173,13 @@ ponto de mínimo.
 
 \clearpage
 \subsubsection{quasi-Newton}
-Os resultados para o método de Newton foram obtidos com o
-\autoref{code:ehl648script2} \lstinputlisting[language=Matlab, caption={Script de execução}, 
-label={code:ehl648script2}]{trab2/EHL-6-48/Script2.m} 
+Os resultados para um método quasi-Newton foram obtidos com o
+\autoref{code:ehl648script2} \lstinputlisting[language=Matlab, caption={Script
+de execução para a resolução do problema utilizando um método quasi-Newton},
+label={code:ehl648script2}]{trab2/EHL-6-48/Script2.m}
 
 Os resultados para cada interação:
-\VerbatimInput[firstline=5, lastline=8]{trab2/EHL-6-48/Resultado2.txt}
+\VerbatimInput[firstline=5, lastline=10]{trab2/EHL-6-48/Resultado2.txt}
 
 Ponto de mínimo encontrado e função avaliada no ponto ótimo:
 \begin{equation}
@@ -207,7 +210,8 @@ ponto de mínimo.
 
 \subsubsection{Conlusão do Exercício 6.48}
 Para o problema proposto, o método quasi-Newton apresentou melhor resultado, uma
-vez que foi necessário um menor número de passos para chegar em $x^*$.
+vez que foi necessário um menor número de passos para chegar em $x^*$. Além do
+mais, o método quasi-Newton não necessita do gradiente fa função objetivo.
 
 \clearpage
 \subsection{Exercício 6.44 \cite{edgar2001optimization}}
@@ -234,7 +238,7 @@ Find the minimum expected risk and $b$.
 }
 
 Antes da substituição dos valores de $F(b)$, $c_1$, $c_2$, $\theta$ e $P$ na
-\autoref{eq:ehl644} devemos encontar um melhor valor para $F(b)$.
+\autoref{eq:ehl644} devemos encontar uma melhor representação para $F(b)$.
 \begin{equation}
 \label{eq:ehl644f}
 F(b) = \int_{-\infty}^b \exp{\left(-\frac{u^2}{2\theta^2}\right)} \diff u
@@ -247,12 +251,12 @@ F(b) = \sqrt{\dfrac{\pi}{2}} \left(\theta
 +\frac{1}{\sqrt{\dfrac{1}{\theta^2}}}
 \right)
 \end{equation}
-onde a função $\erf$ é tabelada e dada por:
+onde a função $\erf$ é tabelada e dada por \cite{Maple10,Matlab2016}:
 \begin{equation}
 \erf\left(x\right) = \frac{2}{\sqrt{\pi}}\int_0^x \exp{\left(-t^2\right)}\diff t
 \end{equation}
 
-Assim, é facilmente obtida aexpressão de $\varepsilon\{risk\}$, como
+Assim, é facilmente obtida a expressão de $\varepsilon\{risk\}$, como
 segue:
 \newcommand{\auxalpha}{\left(\alpha_{\rm{aux}}\right)}
 \newcommand{\auxbeta}{\left(\beta_{\rm{aux}}\right)}
@@ -329,14 +333,12 @@ table[meta=eps]
 \label{fig:ehl6-44}
 \end{figure}
 
-
 \subsubsection*{Solução do Exercício 6.44 utilizando o método de Newton}
 Os resultados para utilisando o método de Newton foram obtidos com o
 \autoref{code:ehl644script1} 
 \lstinputlisting[language=Matlab, caption={Script de execução},
 label={code:ehl644script1}]{trab2/EHL-6-44/Script1.m} 
 
-\clearpage
 Os resultados para cada interação:
 \VerbatimInput[firstline=2, lastline=8]{trab2/EHL-6-44/Resultado1.txt}
 
@@ -352,17 +354,19 @@ x^* = \left[
 \varepsilon\{risk\}(x^*)=-2.3888\times 10^8
 \end{equation}
 \VerbatimInput[firstline=16, lastline=23]{trab2/EHL-6-44/Resultado1.txt}
+\clearpage
 
 \emph{Output} final do Matlab, confirmando que foi utilizado o método de Newton
 \VerbatimInput[firstline=31,
 lastline=38]{trab2/EHL-6-44/Resultado1.txt}
-\clearpage
+
 Valores de $\nabla \varepsilon\{risk\}$ (\code{grad}), $\nabla^2
 \varepsilon\{risk\}$ (\code{hessian}) e\\ $\lambda(\nabla^2
 \varepsilon\{risk\})$ (\code{eigHessian}) , confirmando que se trata de um ponto de mínimo.
 \VerbatimInput[firstline=41, lastline=53]{trab2/EHL-6-44/Resultado1.txt}
 % \VerbatimInput[numbers=left]{trab2/EHL-6-44/Resultado1.txt}
 
+\clearpage
 \subsubsection*{Solução do Exercício 6.44 utilizando um método quasi-Newton}
 Os resultados para o método de Newton foram obtidos com o 
 \autoref{code:ehl644script2} \lstinputlisting[language=Matlab, caption={Script de execução}, 
@@ -383,6 +387,7 @@ x^* = \left[
 \varepsilon\{risk\}(x^*)=-2.3888\times 10^8
 \end{equation}
 \VerbatimInput[firstline=22, lastline=29]{trab2/EHL-6-44/Resultado2.txt}
+\clearpage
 
 \emph{Output} final do Matlab, confirmando que foi utilizado um método
 quasi-Newton
@@ -406,4 +411,4 @@ ponto de mínimo.
 % }
 % 
 % Partindo de\ldots
-
+% 
