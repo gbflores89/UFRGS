@@ -1,6 +1,7 @@
 clc; clear; % limpar console
 fun = @ObjFunc; % definição do problema
-x0 = [485000,185000]; % valor inicial
+x0 = [485000,185000]; % valor inicial 
+% testar x0 = [485000,29411];
 opt = optimset('fminunc');
 opt = optimset(opt,'Display','iter'); 
 opt = optimset(opt,'GradObj','on'); % definindo trust-region Newton
