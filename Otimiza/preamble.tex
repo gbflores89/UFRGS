@@ -9,7 +9,7 @@
 \usepackage[brazil]{hyperref}
 \usepackage[alf]{abntex2cite}
 \usepackage{listings}
-
+ 
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{lastpage}
@@ -32,16 +32,27 @@
 \newcommand{\subfigref}[1]{\hyperref[#1]{Figura~\ref*{#1}}}
 
 \sisetup{output-decimal-marker = {,}}
-\newcommand{\theauthori}{}
 \newcommand{\theauthorii}{}
 \newcommand{\theauthoriii}{}
+\newcommand{\theauthoriv}{}
 \renewcommand{\title}[1]{\newcommand{\thetitle}{#1}}
 \renewcommand{\author}[1]{\newcommand{\theauthor}{#1}}
-\newcommand{\authori}[1]{\renewcommand{\theauthori}{#1}}
 \newcommand{\authorii}[1]{\renewcommand{\theauthorii}{#1}}
 \newcommand{\authoriii}[1]{\renewcommand{\theauthoriii}{#1}}
+\newcommand{\authoriv}[1]{\renewcommand{\theauthoriv}{#1}}
+
 \newcommand{\class}[1]{\newcommand{\theclass}{#1}}
+\newcommand{\theclassProffessorii}{}
+\newcommand{\theclassProffessoriii}{}
+\newcommand{\theclassProffessoriv}{}
 \newcommand{\classProffessor}[1]{\newcommand{\theclassProffessor}{#1}}
+\newcommand{\classProffessorii}[1]{\renewcommand{\theclassProffessorii}{#1}}
+\newcommand{\classProffessoriii}[1]{\renewcommand{\theclassProffessoriii}{#1}}
+\newcommand{\classProffessoriv}[1]{\renewcommand{\theclassProffessoriv}{#1}}
+
+\newcommand{\thetitlemin}{}
+\newcommand{\titlemin}[1]{\renewcommand{\thetitlemin}{#1}}
+
 \usepackage{palatino}
 \renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
 
@@ -113,12 +124,25 @@
   aboveskip=10pt,belowskip=20pt,
   }
 
+\usepackage{lastpage}
 \usepackage{fancyvrb}
 % redefine \VerbatimInput
 \RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}%
 {fontsize=\scriptsize,frame=single,
 rulecolor=\color{lightgray!80},
 }
+
+\usepackage{zref-abspage,zref-lastpage}
+\makeatletter
+  \newcommand*{\iffancylastpage}{%
+    \ifnum\zref@extractdefault{LastPage}{abspage}{-1}%
+        =\numexpr\value{abspage}+1\relax
+      \expandafter\@firstoftwo
+    \else
+      \expandafter\@secondoftwo
+    \fi
+  }%
+\makeatother
 
 % o novo maketitlepage
 \renewcommand{\maketitle}{
@@ -131,23 +155,30 @@ Escola de Engenharia \\
 Departamento de Engenharia Química \\
 Programa de Pós--Graduação em Engenharia Química
 \vfill
-\Large \textsc \theclass \\ Prof:~\theclassProffessor
-\vfill \vfill
+\Large \textsc \theclass \\
+\begin{varwidth}[t]{\textwidth}
+Prof:~\theclassProffessor\\
+\ifthenelse{\equal{\theclassProffessorii}{}}{}{Prof:~\theclassProffessorii\\}
+\ifthenelse{\equal{\theclassProffessoriii}{}}{}{Prof:~\theclassProffessoriii\\}
+\ifthenelse{\equal{\theclassProffessoriv}{}}{}{Prof:~\theclassProffessoriv}
+\end{varwidth}
+\vfill
 \huge \bfseries \textsc  
 \thetitle
-\vfill \vfill
+\vfill
 \begin{varwidth}[t]{\textwidth}
 \Large \bfseries \textsc 
 \theauthor\\
-\ifthenelse{\equal{\theauthori}{}}{}{\theauthori\\}
 \ifthenelse{\equal{\theauthorii}{}}{}{\theauthorii\\}
-\ifthenelse{\equal{\theauthoriii}{}}{}{\theauthoriii}
+\ifthenelse{\equal{\theauthoriii}{}}{}{\theauthoriii\\}
+\ifthenelse{\equal{\theauthoriv}{}}{}{\theauthoriv}
 \end{varwidth}
-\vfill \vfill
+\vfill
 \large \textsc Porto Alegre, RS \\ \today
 \end{center}
 \clearpage
 \setcounter{page}{1}
 \pagestyle{fancy}
-\lhead{}
+\lhead{\slshape\bfseries\large\MakeUppercase\thetitlemin}
+\rfoot{\iffancylastpage{Provided by \Large \LaTeX}{}}%
 } % end maketitle 
