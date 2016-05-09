@@ -1,0 +1,74 @@
+
+\section {Lista 2 -- Otimização sem restrição}
+
+Objetivo: Avaliar os métodos de otimização sem restrições, tanto de busca quanto
+de métrica variável, para uma série de funções objetivos.
+
+Métodos:
+\begin{itemize}
+  \item Busca (DFO) -- Simplex, Hooke, Jeeves e Powell;
+  \item Gradiente -- Máxima descida e gradientes conjugados (\code{cgrad});
+  \item Quase-Newton -- BFGS e DFP;
+  \item Newton -- Newton e Levenberg Marquard (\code{lmarqua})
+\end{itemize}
+\boxexercise{1}
+{
+Tabela com comparativo dos diferentes métodos para os diferentes
+problemas. Deve-se executar cada algoritmo 100 vezes, com diferentes chutes
+iniciais gerados aleatoriamente. Hierarquizar os métodos e elencar os três
+melhores no geral. Atente que dentro do arquivo .m há a resposta de cada teste.
+Utilize duas políticas para chute inicial - uma de menor raio e outra de maior.
+}
+
+A avaliação deverá contemplar as seguintes métricas, para cada algoritmo $i$:
+
+Eficácia ($\theta_i$):
+\begin{equation}
+\theta_i = \frac{100}{N}\sum_{j=1}^{N}\frac{T^*_j}{T_{i, j}}
+\end{equation}
+
+Eficiência ($\chi_i$)
+\begin{equation}
+\chi_i = \frac{100}{N}\sum_{j=1}^{N}\frac{S^*_j}{S_{i, j}}
+\end{equation}
+
+Robustez ($\eta_i$)
+\begin{equation}
+\eta_i = 100\frac{N_i}{N}
+\end{equation}
+
+Qualidade da solução obtida ($\xi_i$)
+\begin{equation}
+\xi_i = \frac{100}{N}\sum_{j=1}^{N}\frac{\left(d^*_j + \varepsilon
+\right)}{\left(d_{i, j} + \varepsilon \right)}
+\end{equation}
+
+Onde $T_{i, j}$ é o seu tempo computacional para resolver o problema $j$,
+$T_j^*$ é o menor tempo entre os algoritmos para resolver o problema $j$,
+$S_{i,j}$ é o seu número de avaliações da função objetivo para resolver o
+problema $j$, $S_j^*$ é o menor número de avaliações entre os algoritmos para
+resolver o problema $j$, $d_j^*$ é a melhor qualidade da solução para o problema
+$j$, $d_{i,j}$ é a qualidade da solução para o problema $j$ definida como:
+\begin{equation}
+d_{i, j} = \frac{\left \| x_{i, j} - x_j^* \right \|}{\varepsilon_x}
++\frac{\left | S_{i, j} - S_j^* \right |}{\varepsilon_S}
+\end{equation}
+onde $\varepsilon$ é a precisão da máquina, $\varepsilon_x$ é a tolerância na 
+variável independente, $\varepsilon_S$ é a tolerância na função objetivo,
+$x_j^*$ é a solução exata do problema $j$, $N_i$ é o seu número de problemas resolvidos
+e $N$ é o número total de problemas. Quando o $i$-ésimo algoritmo não consegue
+resolver o $j$-ésimo problema, então $T_{i, j} = \infty$ e $S_{i, j} = \infty$.
+
+Política do chute inicial: gerar $100$ diferentes chutes iniciais randômicos
+(uniformemente distribuídos) para cada problema. Usar o mesmo conjunto de $100$
+chutes para os diferentes métodos. Devem ser utilizados dois conjuntos de
+valores limítrofes para os chutes $[0\;\ 2]$ e $[-2\;\ 4]$.
+
+Software: MATLAB
+Arquivos: baixar do Moodle os arquivos problemas.zip e algoritmos.zip e extrai-los no mesmo
+diretório.
+
+\boxexercise{2}
+{
+Algoritmo próprio (proposto pelo aluno, ou em dupla) que tenha performance
+comparável aos três melhores.}
