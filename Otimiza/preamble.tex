@@ -165,7 +165,7 @@ Prof:~\theclassProffessor\\
 \vfill
 \huge \bfseries \textsc  
 \thetitle
-\vfill
+\vfill 
 \begin{varwidth}[t]{\textwidth}
 \Large \bfseries \textsc 
 \theauthor\\
@@ -180,5 +180,6 @@ Prof:~\theclassProffessor\\
 \setcounter{page}{1}
 \pagestyle{fancy}
 \lhead{\slshape\bfseries\large\MakeUppercase\thetitlemin}
+\lfoot{\iffancylastpage{\color{lightgray}Certified by MacGyver}{}}%
 \rfoot{\iffancylastpage{Powered by \Large \LaTeX}{}}%
 } % end maketitle 
