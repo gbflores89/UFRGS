@@ -102,6 +102,24 @@
       \end{tikzpicture}
     \end{center}
   }
+  
+  \tikzstyle{abstractbox} = [draw=black, rectangle, 
+  inner sep=10pt, style=rounded corners, drop shadow={fill=gray,
+  opacity=1}]
+  \tikzstyle{abstracttitle} =[fill=white]
+ \newcommand{\boxabstract}[1]{ 
+    \begin{center}
+      \begin{tikzpicture}
+        \node [abstractbox, fill=white] (box)
+        {\begin{minipage}{0.85\textwidth}
+            \setlength{\parindent}{1em}
+            \vspace{\belowdisplayskip} \emph{#1}
+          \end{minipage}};
+        \node[abstracttitle, right=10pt] at
+        (box.north west) {Resumo};
+      \end{tikzpicture}
+    \end{center}
+  }
 
 \onehalfspacing
 \newcommand{\code}[1]{\texttt{#1}}
