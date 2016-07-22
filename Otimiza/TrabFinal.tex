@@ -41,6 +41,34 @@ configuração de duas colunas operando em série com pressões distintas. O
 trabalho de \citeonline{Haelssig2008} corroborou com a os resultados obtidos
 por \citeonline{Larsson1996}.
 
+Para que seja possível obter o comportamento confiável do equilíbrio
+líquido-vapor algum tipo de sistema (binário ou multicomponente) para o uso em
+simulações nas etapas de projeto e otimização de processos de separação, como
+por exemplo a destilação, são necessários dados de equilíbrio confiáveis e um
+modelo de coeficiente de atividade (modelo de $\gamma$ ou também conhecido como
+modelo de $g^{\rm{E}}$) robusto o suficiente para o sistema em questão.
+
+Uma grande quantidade de dados de equilíbrio líquido-vapor (VLE, Vapor-Liquid
+Equilibrium) para o sistema etanol/água estão disponíveis na literatura. Assim
+como diversos modelos de $\gamma$ e modelos de outras propriedades
+termodinâmicas para este mesmo sistema. Como descrito por
+\citeonline{Haelssig2008} os modelos disponíveis como Wilson e UNIQUAC ora
+falham na predição do azeótropo ora são incapazes de prover informações
+energéticas da mistura, como entalpia de mistura. No seu trabalho,
+\citeonline{Haelssig2008} propõe como um dos objetivos de seu trabalho o
+desenvolvimento de uma nova dependência com a temperatura para modelos de
+$g^{\rm{E}}$ (UNIQUAC, Wilson e NRTL) comuns em simuladores de processos em que
+se utilizam interações binárias, utilizando dados de VLE, pontos de azeótropo e
+entalpia de excesso ($h^{\rm{E}}$).
+
+O objetivo deste trabalho é a reprodução do trabalho de
+\citeonline{Haelssig2008}, porém verificando a capacidade do modelo F-SAC+Disp
+\citeonline{Flores2016} com os mesmos tipos de dados experimentais (VLE e
+$h^{\rm{E}}$) utilizando diferentes métodos de otimização global e comparando
+as diferentes condições de cada um.
+
+\section {Modelo F-SAC+Disp}
+
 
 Falar um mínimo do modelo F--SAC+Disp e o objetivo do trabalho falando sobre os
 métodos de estimação de parâmetros. Também comentar um mínimo do que será visto
