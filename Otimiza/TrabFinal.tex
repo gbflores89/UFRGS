@@ -23,14 +23,26 @@ este processo envolve grande quantidade de água, pois os micro-organismos
 responsáveis pela transformação da glicose em etanol não são tão resistentes
 quanto se desejaria.
 
-Motivado por este problema energético, temos que o conhecimento do
+Motivado por este problema energético, temos que, o conhecimento do
 comportamento do equilíbrio liquido-vapor do sistema etanol água é de suma
 importância para a indústria alcooleira. Um dos principais motivos para esta
 preocupação é o uso na gasolina. O álcool incorporado na gasolina deve ser do
-tipo anidro (sem água), porém, sabemos que o sistema etanol água forma um
+tipo \emph{anidro} (sem água), porém, sabemos que o sistema etanol água forma um
 azeótropo positivo com relação à pressão para sistemas isotérmicos em
 temperaturas moderadas (negativo com relação à temperatura em situações
-isobáricas para pressão moderada).
+isobáricas para pressão moderada). Este azeótropo pode ser melhor observado na
+\autoref{fig:vle1}.
+\begin{figure}[H]
+\centering
+{\includegraphics[width=0.45\textwidth]
+{trabFinal/EtOH1.pdf}}
+{\includegraphics[width=0.45\textwidth]
+{trabFinal/EtOH2.pdf}}
+\caption{Comportamento do equilíbrio líquido vapor da mistura etanol (1) água
+(2) na temperatura de $323.15$~K, onde é possível observar o azeótropo. Dados
+experimentais de \citeonline{Kurihara1995}}
+\label{fig:vle1}
+\end{figure}
 
 O azeótropo formado por esta mistura impossibilita a separação do etanol puro
 em uma coluna de destilação simples. \citeonline{Haelssig2008} estudou a
@@ -43,14 +55,15 @@ por \citeonline{Larsson1996}.
 
 Para que seja possível obter o comportamento confiável do equilíbrio
 líquido-vapor algum tipo de sistema (binário ou multicomponente) para o uso em
-simulações nas etapas de projeto e otimização de processos de separação, como
+simulações nas etapas de projeto e/ou otimização de processos de separação, como
 por exemplo a destilação, são necessários dados de equilíbrio confiáveis e um
-modelo de coeficiente de atividade (modelo de $\gamma$ ou também conhecido como
-modelo de $g^{\rm{E}}$) robusto o suficiente para o sistema em questão.
+modelo de coeficiente de atividade da fase líquida (modelo de $\gamma_i$ ou
+também conhecido como modelo de $g^{\rm{E}}$) robusto o suficiente para o
+sistema em questão.
 
 Uma grande quantidade de dados de equilíbrio líquido-vapor (VLE, Vapor-Liquid
 Equilibrium) para o sistema etanol/água estão disponíveis na literatura. Assim
-como diversos modelos de $\gamma$ e modelos de outras propriedades
+como diversos modelos de $g^{\rm{E}}$ e modelos de outras propriedades
 termodinâmicas para este mesmo sistema. Como descrito por
 \citeonline{Haelssig2008} os modelos disponíveis como Wilson e UNIQUAC ora
 falham na predição do azeótropo ora são incapazes de prover informações
@@ -68,12 +81,14 @@ $h^{\rm{E}}$) utilizando diferentes métodos de otimização global e comparando
 as diferentes condições de cada um.
 
 \section {Modelo F-SAC+Disp}
-
+O modelo F-SAC+Disp \cite{Flores2016} é um aprimoramento do modelo F-SAC
+anterior, que vem sendo desenvolvido nos últimos anos. \cite{Soares2013a,
+Soares2013b, Possani2013}.
 
 Falar um mínimo do modelo F--SAC+Disp e o objetivo do trabalho falando sobre os
 métodos de estimação de parâmetros. Também comentar um mínimo do que será visto
 adiante no trabalho.
-
+\cite{Soares2013a,Soares2013b,Possani2013,Flores2016}
 \section {Métodos de otimização global}
 
 Falar o propósito de utilizar algum método de estimação de parâmetros
