@@ -1,6 +1,9 @@
 \boxabstract{
-Escrever o resumo aqui.
-}
+Neste trabalho três diferentes métodos de otimização foram utilizados, Direct,
+Algoritmo Genético e PSO, para a minimização do erro experimental a fim de
+ajustar o modelo F-SAC+Disp. Pode-se concluir que nenhum dos diferentes métodos
+obteve um resultado satisfatório, levando a conclusão de que o problema
+encontra-se no modelo utilizado para representar os dados experimentais.}
 
 \section {Introdução}
 O crescimento contínuo da demanda de energia também gera um crescimento no
@@ -39,7 +42,7 @@ isobáricas para pressão moderada). Este azeótropo pode ser melhor observado na
 {trabFinal/EtOH2.pdf}}
 \caption{Comportamento do equilíbrio líquido vapor da mistura etanol (1) água
 (2) na temperatura de $323.15$~K, onde é possível observar o azeótropo. Dados
-experimentais de \citeonline{Kurihara1995}}
+experimentais de \citeonline{Kurihara1995}.}
 \label{fig:vle1}
 \end{figure}
 
@@ -156,9 +159,8 @@ de mesmo nome, conforme representado na \autoref{tab:groups}.
 
 \begin{table}[htb] 
 \renewcommand{\arraystretch}{1.3}
-\sisetup{table-format=4.0,round-mode=places,round-precision=0}
 \caption{Representação das moléculas utilizando os segmentos 
-estudados neste trabalho}
+estudados neste trabalho.}
 \label{tab:groups}
 \footnotesize
 \begin{center}
@@ -167,12 +169,12 @@ estudados neste trabalho}
 \toprule
 Componente & Fórmula & \multicolumn{2}{l}{Grupos}\\
 \midrule
-{Etanol} 	& \ce{C2H6O}& {$1\times$\ce{CH3}} & {$1\times$\ce{CH2OH}\tnote{a}}\\
-{Água}		& \ce{H2O}& {$1\times$\ce{H2O}\tnote{a}}\\ 
+{Etanol} 	& \ce{C2H6O}& {$1\times$\ce{CH3}} & {$1\times$\ce{CH2OH}\tnote{(a)}}\\
+{Água}		& \ce{H2O}& {$1\times$\ce{H2O}\tnote{(a)}}\\ 
 \bottomrule
 \end{tabular}
 \begin{tablenotes}
- \item[a]{\scriptsize {Grupos que formam ligações de hidrogênio.}}
+ \item[(a)]{\scriptsize {Grupos que formam ligações de hidrogênio.}}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -263,35 +265,88 @@ fazendo com que sejam necessárias diversas inicializações.
 
 \section{Descrição do problema}
 Como já relatado por
-\citeonline{Soares2013a,Soares2013b,Possani2013,Flores2016}, os problemas
-envolvendo os modelos do tipos F-SAC tratam-se de sistemas de equações
-altamente não lineares. Devidos à desafios matemáticos métodos de busca local,
-como Newton, tem gerados problemas na otimização da função objetivo \cite{
-Possani2013}. Para transpor este objetivo, propõe-se a cada dia novas técnicas,
-dentre elas, trabalhos em que se utilizam de métodos de otimização global. Para
-esse fim, foi desenvolvida a função objetivo que será apresentada a seguir.
+\citeonline{Soares2013a,Soares2013b,Possani2013} e \citeonline{Flores2016}, os
+problemas envolvendo os modelos do tipos F-SAC tratam-se de sistemas de equações
+altamente não lineares. Devidos à desafios matemáticos, métodos de busca local,
+como Newton, tem gerados problemas na otimização da função objetivo evido ao
+seu \emph{mau comportamento} e diversos mínimos locais \cite{Possani2013}. Para
+transpor estas dificuldades, propõe-se novas técnicas, dentre elas, trabalhos em
+que se utilizam de métodos de otimização global.
 
 \subsection{Função objetivo}
 A Função Objetivo ($OF$ -- \emph{Objective Function}) deste trabalho teve como
-base duas propriedades termodinâmicas relevantes ao mesmo. Estas propriedades foram
-condensadas em uma mesma $OF$, como segue:
+base duas propriedades termodinâmicas relevantes ao mesmo, a pressão, $P$, e a
+entalpia de excesso, $h^{\rm{E}}$. Estas propriedades foram condensadas em uma
+mesma $OF$, como segue:
 \begin{equation}
 OF = AARD_{VLE} + AARD_{ h^{\rm{E}}}
 \end{equation}
-onde $AARD$ (Average Absolute Relative Deviation) é o Desvio Absoluto Médio
-Relativo de cada propriedade, como segue:
+onde $AARD$ (\emph{Average Absolute Relative Deviation}) é o Desvio
+Médio Relativo Absoluto de cada propriedade, como segue:
 \begin{subequations}
 \begin{equation}
-AARD_{ VLE} = \frac{1}{\rm{NP}} \sum_i^{\rm{NP}} \frac{\left| 
+AARD_{ VLE} = \frac{1}{NP} \sum_i^{NP} \frac{\left| 
 P_{i, \rm{exp}} - P_{i, \rm{calc}} \right|}{ P_{i, \rm{exp}}}
 \end{equation}
 \begin{equation}
-AARD_{ h^{\rm{E}}} = \frac{1}{\rm{NP}} \sum_i^{\rm{NP}} \frac{\left| 
+AARD_{ h^{\rm{E}}} = \frac{1}{NP} \sum_i^{NP} \frac{\left| 
 h^{\rm{E}}_{i, \rm{exp}} - h^{\rm{E}}_{i, \rm{calc}} \right|}{ h^{\rm{E}}_{i,
 \rm{exp}}}
 \end{equation}
 \end{subequations}
-onde $NP$ é o número de pontos experimentais.
+onde $NP$ é o número de pontos experimentais$P$ é calculado utilizando a Lei de
+Raoult Modificada e $h^{\rm{E}}$ é calculado utilizando rotinas internas do
+modelo F-SAC+Disp.
+
+Neste trabalho não foi utilizado uma função objetiva da forma quadrática.
+Apesar de o valor absoluto do erro não ser uma função estritamente convexa,
+utiliza-se a mesma devido que em pequenos valores da $OF$ os mesmos tem um
+valor ainda mais reduzidos, como segue na demonstração da \autoref{tab:demo}.
+Aqui é possível observar, em valores genéricos, que a ordem de grandeza se
+altera muito caso fosse utilizada uma $OF$ quadrática, fazendo com que quando
+são combinados tipos de dados experimentais diferentes, $\ln\gamma_i$, $P$ e $
+h^{\rm{E}}$impossibilitem o uso da mesma.
+
+\begin{table}[H] 
+\renewcommand{\arraystretch}{1.3}
+\caption{Representação do comportamento da função objetivo utilizando
+diferentes formulações.}
+\label{tab:demo}
+\footnotesize
+\begin{center}
+\begin{tabular}{
+S[table-format=4.2]
+S[table-format=2.3]
+S[table-format=4.6]}
+\toprule
+\multirow{2}{*}{$Erro$} & \multicolumn{2}{c}{Função objetivo}\\
+\cmidrule(lr{.5em}){2-3}
+ & {$\left| Erro \right|$} & {$\left( Erro \right)^2$}\\
+\midrule
+10		&	10		&	100	\\
+1			&	1		&	1	\\
+0.1		&	0.1		&	0.01	\\
+0.001		&	0.001	&	0.000001	\\
+-0.001	&	0.001	&	0.000001	\\
+-0.1		&	0.1		&	0.01	\\
+-1		&	1		&	1	\\
+-10		&	10		&	100	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+\section{Resultados}
+Os resultados obtidos neste trabalho serão apresentados a seguir, diferenciando
+cada método utilizado.
+
+\subsection{Resultados do Algoritmos Direct}
+
+
+\subsection{Resultados do Algoritmos Genético}
+
+
+\subsection{Resultados do Algoritmos PSO}
 
 
 
@@ -315,6 +370,12 @@ onde $NP$ é o número de pontos experimentais.
 
 
 
-\subsection{Códigos}
-Explicar o que foi implementado e o que já foi pego pronto de alguma \emph{lib}
+
+
+
+
+
+
+
+
 
