@@ -2,7 +2,6 @@
 Escrever o resumo aqui.
 }
 
-
 \section {Introdução}
 O crescimento contínuo da demanda de energia também gera um crescimento no
 consumo de combustíveis fósseis. Entretanto, sabemos que este é um recurso
@@ -85,23 +84,181 @@ O modelo F-SAC+Disp \cite{Flores2016} é um aprimoramento do modelo F-SAC
 anterior, que vem sendo desenvolvido nos últimos anos. \cite{Soares2013a,
 Soares2013b, Possani2013}.
 
-Falar um mínimo do modelo F--SAC+Disp e o objetivo do trabalho falando sobre os
-métodos de estimação de parâmetros. Também comentar um mínimo do que será visto
-adiante no trabalho.
-\cite{Soares2013a,Soares2013b,Possani2013,Flores2016}
+Nos modelos do tipo F-SAC, assim como nas variantes do modelo UNIFAC
+(\emph{UNIversal quasichemical Functional group Activity Coefficient}) e
+modelos baseados no COSMO-RS (\emph{COnductor-like Screening Model for
+Realistic Solvation}), o coeficiente de atividade da fase líquida é calculado
+como uma função da temperatura e composição da mesma fase, como uma soma das
+contribuições residual e combinatorial:
+\begin{equation}
+\ln{\gamma_i} = \ln{\gamma_i^{\rm res}} + \ln{\gamma_i^{\rm comb}}
+\end{equation}
+
+A contribuição combinatorial $(\ln{\gamma^{\rm{comb}}})$ geralmente leva em
+conta a diferenças de forma e tamanho entre as moléculas envolvidas no sistema,
+no modelo F-SAC+Disp, é calculada da seguinte maneira:
+\begin{subequations}
+\begin{equation}
+\ln \gamma^{\rm{comb}}_{i} = 1 - V_i ' + \ln V_i '
+\end{equation}
+\begin{equation}
+V_i ' = \frac{r_i^p}{\sum_j{x_j r_j^{\left({}^3/_4
+\right)}}}
+\end{equation}
+\begin{equation}
+r_i = \sum_k{\nu_k^{(i)}R_k}
+\end{equation}
+\end{subequations} 
+onde $V_i'$ é a fração volumétrica da molécula $i$;
+$r_i$ o volume total da molécula $i$; 
+$\nu_k^{(i)}$ é o número de subgrupos do tipo $k$ na molécula $i$;
+$R_k$ é volume do subgrupo $k$;
+
+A contribuição residual $(\ln{\gamma^{\rm{res}}})$ considera as diferenças
+energéticas entre as moléculas. O modelo F-SAC+Disp faz uso de termodinâmica
+estatística para o cálculo desta parcela, computando as forças de atração e/ou
+repulsão por meio de um perfil-$\sigma$ discretizado como segue:
+\begin{equation}
+\begin{aligned}
+\Delta W \left (T, m, n \right ) = \theta \left (T, m, n \right )&
+\frac{\alpha ' \left (\sigma_m +\sigma_n\right )^2}{2}\\
+ -& \frac{E^{\rm{HB}}\left (T, m, n \right )}{2} - \frac{\delta \left(T, m, n
+ \right )}{2}
+\end{aligned}
+\end{equation}
+Mais detalhes sobre os modelo do tipo F-SAC podem ser encontrados nos trabalhos
+de \citeonline{Soares2013a,Soares2013b,Possani2013,Flores2016}.
+
 \section {Métodos de otimização global}
+Para a mistura de etanol/água no modelo F-SAC+Disp, temos uma série de
+diferentes parâmetros para serem ajustados:
+\begin{itemize}
+  \item [$Q_k^+$] Área superficial positiva do subgrupo $k$;
+  \item [$Q_k^-$]  Área superficial negativa do subgrupo $k$;
+  \item [$\sigma_k^+$]  Carga presente na área superficial positiva do subgrupo
+  $k$;
+  \item [$Q_k$]  Área superficial total do subgrupo $k$;
+  \item [$\delta_k^0$] Dispersão do grupo $k$ na temperatura de referencia de
+  $298.15$~K;
+  \item [$\delta_k^T$] Dependência da temperatura com relação à dispersão do
+  grupo $k$;
+  \item [$E^{\rm{HB}}$] Interação binária da ligação de hidrogênio;
+  \item [$E^{\rm{HB}}_T$] Dependência da temperatura interação binária da
+  ligação de hidrogênio;
+\end{itemize}
 
-Falar o propósito de utilizar algum método de estimação de parâmetros
+Neste trabalho, os grupos e subgrupos serão tratados como iguais. O motivo
+desta diferenciação na nomenclatura é devido ao fato de que a tabela de
+parâmetros é referente apenas à mistura de etanol/água. Para a representação
+desta mistura são necessários 3 grupos, os quais contemplam apenas um subgrupo
+de mesmo nome, conforme representado na \autoref{tab:groups}. 
 
-\subsection {PSO (Particle Swarm Optimizer)}
-Explicar alguma coisa sobre o PSO
+\begin{table}[htb] 
+\renewcommand{\arraystretch}{1.3}
+\sisetup{table-format=4.0,round-mode=places,round-precision=0}
+\caption{Representação das moléculas utilizando os segmentos 
+estudados neste trabalho}
+\label{tab:groups}
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\begin{tabular}{llll}
+\toprule
+Componente & Fórmula & \multicolumn{2}{l}{Grupos}\\
+\midrule
+{Etanol} 	& \ce{C2H6O}& {$1\times$\ce{CH3}} & {$1\times$\ce{CH2OH}\tnote{a}}\\
+{Água}		& \ce{H2O}& {$1\times$\ce{H2O}\tnote{a}}\\ 
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+ \item[a]{\scriptsize {Grupos que formam ligações de hidrogênio.}}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
 
-\subsection {Algorítmo Genético}
-Explicar alguma coisa sobre o Genético
+Partindo do princípio que os parâmetros $Q_k^+$, $Q_k^-$ e $\sigma_k^+$ são
+referentes aos grupos; $Q_k$, $\delta_k^0$ e $\delta_k^T$ são referentes aos
+subgrupos; $E^{\rm{HB}}$ e $E^{\rm{HB}_T}$ referentes à interação binária entre
+os grupos que formam ligações de hidrogênio, em conjunto com a
+\autoref{tab:groups} em que é demonstrado o conjunto de grupos e subgrupos
+utilizados para a representação de cada molécula, temos um total de $xx$
+parâmetros.
 
+Como visto, a quantidade de parâmetros existentes no problema é grande,
+principalmente quando se trata de um modelo altamente não linear, como o modelo
+F-SAC+Disp. Para este estudo, foram pesquisados três diferentes métodos de
+otimização para minimizar a função objetivo.
 
-\subsection {Algotítmo Direct}
-Explicar alguma coisa sobre o Direct
+\subsection {Algoritmos Determinísticos}
+Algoritmos Determinísticos são denominados matematicamente quando, uma mesma
+entrada (valores ou iniciais ou de fronteiras) geram uma mesma saída. Estes
+algoritmos não possuem aleatoriedade envolvida, ou seja, caso executado $5$ ou
+$10$ vezes, apresentarão resultados idênticos.
+
+\subsubsection {Algotítmo Direct}
+O algoritmo Direct trata-se de um método de busca global, onde são dados os
+parâmetros de fronteira, partindo da dimensão do problema $k$, é formado um
+poliedro, o qual é repartido em $n$ vezes e o valore da função objetivo é
+calculados no centro do mesmo. Uma vez obtido o menor valor entre estes pontos,
+o poliedro que obteve o melhor valor para o objetivo desejado é repartido em
+novos poliedros de $k$ dimensoes, para os passos seguintes, em que são
+calculados novamente o valor da função objetivo, e sistematicamente segue. Por
+fim devido ao número de seções efetuadas um valor mínimo é obtido. Este
+raciocínio é melhor exemplificado na \autoref{fig:direct} utilizando uma função
+objetivo de dois parâmetros genérica, onde quanto mais escuro o poliedro melhor
+o valor da função objetivo.
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=0.8\textwidth]
+{trabFinal/direct.pdf}}
+\caption{Representação esquemática de um problema binário resolvido via
+algoritmo Direct, onde quanto mais escuro o poliedro formado, melhor o valor da
+função objetivo.}
+\label{fig:direct}
+\end{figure}
+
+O Algoritmo Direct utilizado neste trabalho foi implementado na linguagem
+\code{JAVA} dentro do laboratório implementando a \emph{Interface}
+\code{Objective Function}, presente em \citeonline{ Apache2004}. 
+
+\subsection {Algoritmos estocásticos }
+A classe de algoritmos estocásticos são geralmente métodos de otimização para a
+busca do mínimo global do sistema estudado. O grande diferencial destes métodos
+é a adoção da aleatoriedade. Esta aleatoriedade conferida ao método dá a
+possibilidade de explorar possíveis soluções que os algoritmos determinísticos
+como Newton e Nelder Mead não proporcionam e geralmente com um número de
+iterações muito menor que métodos de busca global, como Direct necessitam.
+
+\subsubsection {Algorítmo Genético (AG)}
+O Algoritmo Genético parte da teoria de Charles Darwin, a qual fala que os mais
+aptos têm melhor melhores condições de se desenvolver, em contrapartida, os
+menos aptos tendem à desaparecer da espécie em questão, também conhecida como
+seleção natural. Este método tem por objetivo descartar os piores indivíduos
+(maior valor da função objetivo caso a direção seja minimizar a mesma, e
+vice-e-versa) e evoluir os melhores. Entretanto, este método é muito dependente
+da inicialização, uma vez que se a primeira geração de indivíduos é muito ruim,
+a probabilidade de que as próximas evoluam para o ótimo global não é tão grande
+quanto o esperado. Assim, são necessárias várias inicializações do algoritmo,
+selecionando a melhor das melhores.
+
+Este algoritmo foi implementado em \code{JAVA} por \citeonline{Apache2004} e
+obtido através do pacote computacional \code{commons-math-1.2}, disponível na
+internet para consulta.
+
+\subsubsection {Particle Swarm Optimization (PSO)}
+O método PSO (\emph{Particle Swarm Optimization} -- Optimização por Enxame de
+Partículas) foi implementado na linguagem \code{JAVA} no laboratório para fins
+deste trabalho. Apresentado por \citeonline{ Kennedy1995}, este método tem duas
+principais vertentes, a primeira delas é a vida artificial, representando a
+revoada de pássaros e cardumes de peixes pela forma do comportamento social
+(efeito de madada). A segunda, é inspirada em algoritmos genéticos e programação
+evolucionária. Infelizmente, assim como no AG, em que a inicialização da rotina
+de otimização é aleatória, este método depende também muito de seu início, uma
+vez que a melhor partícula da primeira iteração coordena o movimento das demais,
+fazendo com que sejam necessárias diversas inicializações.
+
 
 \section{Estimação dos parâmetros}
 
