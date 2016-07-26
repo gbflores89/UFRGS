@@ -120,8 +120,9 @@ estatística para o cálculo desta parcela, computando as forças de atração e/ou
 repulsão por meio de um perfil-$\sigma$ discretizado como segue:
 \begin{equation}
 \begin{aligned}
-\Delta W \left (T, m, n \right ) = \theta \left (T, m, n \right )&
-\frac{\alpha ' \left (\sigma_m +\sigma_n\right )^2}{2}\\
+\Delta W \left (T, m, n \right ) = \theta \left (T, m, n \right
+)\frac{\alpha '
+\left (\sigma_m +\sigma_n\right )^2}{2}\\
  -& \frac{E^{\rm{HB}}\left (T, m, n \right )}{2} - \frac{\delta \left(T, m, n
  \right )}{2}
 \end{aligned}
@@ -260,10 +261,59 @@ vez que a melhor partícula da primeira iteração coordena o movimento das demais,
 fazendo com que sejam necessárias diversas inicializações.
 
 
-\section{Estimação dos parâmetros}
+\section{Descrição do problema}
+Como já relatado por
+\citeonline{Soares2013a,Soares2013b,Possani2013,Flores2016}, os problemas
+envolvendo os modelos do tipos F-SAC tratam-se de sistemas de equações
+altamente não lineares. Devidos à desafios matemáticos métodos de busca local,
+como Newton, tem gerados problemas na otimização da função objetivo \cite{
+Possani2013}. Para transpor este objetivo, propõe-se a cada dia novas técnicas,
+dentre elas, trabalhos em que se utilizam de métodos de otimização global. Para
+esse fim, foi desenvolvida a função objetivo que será apresentada a seguir.
 
 \subsection{Função objetivo}
-Explicar a função objetivo e demonstrar suas equações complementares
+A Função Objetivo ($OF$ -- \emph{Objective Function}) deste trabalho teve como
+base duas propriedades termodinâmicas relevantes ao mesmo. Estas propriedades foram
+condensadas em uma mesma $OF$, como segue:
+\begin{equation}
+OF = AARD_{VLE} + AARD_{ h^{\rm{E}}}
+\end{equation}
+onde $AARD$ (Average Absolute Relative Deviation) é o Desvio Absoluto Médio
+Relativo de cada propriedade, como segue:
+\begin{subequations}
+\begin{equation}
+AARD_{ VLE} = \frac{1}{\rm{NP}} \sum_i^{\rm{NP}} \frac{\left| 
+P_{i, \rm{exp}} - P_{i, \rm{calc}} \right|}{ P_{i, \rm{exp}}}
+\end{equation}
+\begin{equation}
+AARD_{ h^{\rm{E}}} = \frac{1}{\rm{NP}} \sum_i^{\rm{NP}} \frac{\left| 
+h^{\rm{E}}_{i, \rm{exp}} - h^{\rm{E}}_{i, \rm{calc}} \right|}{ h^{\rm{E}}_{i,
+\rm{exp}}}
+\end{equation}
+\end{subequations}
+onde $NP$ é o número de pontos experimentais.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Códigos}
 Explicar o que foi implementado e o que já foi pego pronto de alguma \emph{lib}
