@@ -1,5 +1,5 @@
 \boxabstract{
-Neste trabalho três diferentes métodos de otimização foram utilizados, Direct,
+Neste trabalho três diferentes métodos de otimização foram utilizados, DiRect,
 Algoritmo Genético e PSO, para a minimização do erro experimental a fim de
 ajustar o modelo F-SAC+Disp. Pode-se concluir que nenhum dos diferentes métodos
 obteve um resultado satisfatório, levando a conclusão de que o problema
@@ -199,7 +199,7 @@ entrada (valores ou iniciais ou de fronteiras) geram uma mesma saída. Estes
 algoritmos não possuem aleatoriedade envolvida, ou seja, caso executado $5$ ou
 $10$ vezes, apresentarão resultados idênticos.
 
-\subsubsection {Algotítmo Direct}
+\subsubsection {Algotítmo DiRect}
 O algoritmo Direct trata-se de um método de busca global, onde são dados os
 parâmetros de fronteira, partindo da dimensão do problema $k$, é formado um
 poliedro, o qual é repartido em $n$ vezes e o valore da função objetivo é
@@ -217,12 +217,12 @@ o valor da função objetivo.
 {\includegraphics[width=0.8\textwidth]
 {trabFinal/direct.pdf}}
 \caption{Representação esquemática de um problema binário resolvido via
-algoritmo Direct, onde quanto mais escuro o poliedro formado, melhor o valor da
+algoritmo DiRect, onde quanto mais escuro o poliedro formado, melhor o valor da
 função objetivo.}
 \label{fig:direct}
 \end{figure}
 
-O Algoritmo Direct utilizado neste trabalho foi implementado na linguagem
+O Algoritmo DiRect utilizado neste trabalho foi implementado na linguagem
 \code{JAVA} dentro do laboratório implementando a \emph{Interface}
 \code{Objective Function}, presente em \citeonline{ Apache2004}. 
 
@@ -232,7 +232,7 @@ busca do mínimo global do sistema estudado. O grande diferencial destes métodos
 é a adoção da aleatoriedade. Esta aleatoriedade conferida ao método dá a
 possibilidade de explorar possíveis soluções que os algoritmos determinísticos
 como Newton e Nelder Mead não proporcionam e geralmente com um número de
-iterações muito menor que métodos de busca global, como Direct necessitam.
+iterações muito menor que métodos de busca global, como DiRect necessitam.
 
 \subsubsection {Algorítmo Genético (AG)}
 O Algoritmo Genético parte da teoria de Charles Darwin, a qual fala que os mais
@@ -246,8 +246,8 @@ a probabilidade de que as próximas evoluam para o ótimo global não é tão grande
 quanto o esperado. Assim, são necessárias várias inicializações do algoritmo,
 selecionando a melhor das melhores.
 
-Este algoritmo foi implementado em \code{JAVA} por \citeonline{Apache2004} e
-obtido através do pacote computacional \code{commons-math-1.2}, disponível na
+Este algoritmo foi implementado em \code{JAVA} por \citeonline{Jgap} e
+obtido através do pacote computacional \code{jgap}, disponível na
 internet para consulta.
 
 \subsubsection {Particle Swarm Optimization (PSO)}
@@ -338,12 +338,62 @@ S[table-format=4.6]}
 
 \section{Resultados}
 Os resultados obtidos neste trabalho serão apresentados a seguir, diferenciando
-cada método utilizado.
+cada método utilizado. Para a análise destes resultados foram utilizados os
+resultados da mistura etanol/água na temperatura de $323$~K tanto de VLE quanto
+$h^{\rm{E}}$.
 
-\subsection{Resultados do Algoritmos Direct}
+\subsection{Resultados do Algoritmos DiRect}
+Para o algoritmo DiRect foram utilizados três diferentes conjuntos de
+parametrização, demonstrados na \autoref{tab:resDiRect}, em conjunto com o
+resultado obtido pela função objetivo. Aqui, os valores $\varepsilon$ e MinSize
+são referentes a quantas vezes a $FO$ será avaliada em um mesmo poliedro e qual
+o critério no qual o poliedro não deverá ser mais dividido.
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3}
+\sisetup{table-format=1.4,round-mode=places,round-precision=4}
+\caption{Conjunto de problemas executados neste trabalho utilizando o algoritmo
+genético.}
+\label{tab:resDiRect}
+\footnotesize
+\begin{center}
+\begin{tabular}{S[table-format=1.0]SSS}
+\toprule
+{Conjunto} &{$\varepsilon$}	 &{MinSize} &{$FO$}	\\
+\midrule
+1&	0.001	&	0.001	&0.\\
+2&	0.001	&	0.001	&0.\\
+3&	0.001	&	0,001	&0.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+
 
 
 \subsection{Resultados do Algoritmos Genético}
+
+\begin{table}[H] 
+\renewcommand{\arraystretch}{1.3}
+\sisetup{table-format=3.0,round-mode=places,round-precision=0}
+\caption{Conjunto de problemas executados neste trabalho utilizando o algoritmo
+genético.}
+\label{tab:resAG}
+\footnotesize
+\begin{center}
+\begin{tabular}{S[table-format=1.0]SS
+S[table-format=0.4,round-mode=places,round-precision=4]}
+\toprule
+{Conjunto} &{População inicial}	 &{Gerações} &{$FO$}	\\
+\midrule
+1&	50	&	5	&0.\\
+2&	100	&	5	&0.\\
+3&	100	&	10	&0.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
 
 
 \subsection{Resultados do Algoritmos PSO}
