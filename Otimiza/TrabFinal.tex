@@ -37,7 +37,7 @@ isobáricas para pressão moderada). Este azeótropo pode ser melhor observado na
 \begin{figure}[H]
 \centering
 {\includegraphics[width=0.45\textwidth]
-{trabFinal/EtOH1.pdf}}
+{trabFinal/EtOH1.pdf}} 
 {\includegraphics[width=0.45\textwidth]
 {trabFinal/EtOH2.pdf}}
 \caption{Comportamento do equilíbrio líquido vapor da mistura etanol (1) água
@@ -92,7 +92,7 @@ Nos modelos do tipo F-SAC, assim como nas variantes do modelo UNIFAC
 modelos baseados no COSMO-RS (\emph{COnductor-like Screening Model for
 Realistic Solvation}), o coeficiente de atividade da fase líquida é calculado
 como uma função da temperatura e composição da mesma fase, como uma soma das
-contribuições residual e combinatorial:
+contribuições, residual e combinatorial:
 \begin{equation}
 \ln{\gamma_i} = \ln{\gamma_i^{\rm res}} + \ln{\gamma_i^{\rm comb}}
 \end{equation}
@@ -131,7 +131,7 @@ repulsão por meio de um perfil-$\sigma$ discretizado como segue:
 \end{aligned}
 \end{equation}
 Mais detalhes sobre os modelo do tipo F-SAC podem ser encontrados nos trabalhos
-de \citeonline{Soares2013a,Soares2013b,Possani2013,Flores2016}.
+de \citeonline{Soares2013a,Soares2013b,Possani2013} e \citeonline{Flores2016}.
 
 \section {Métodos de otimização global}
 Para a mistura de etanol/água no modelo F-SAC+Disp, temos uma série de
@@ -185,7 +185,7 @@ referentes aos grupos; $Q_k$, $\delta_k^0$ e $\delta_k^T$ são referentes aos
 subgrupos; $E^{\rm{HB}}$ e $E^{\rm{HB}_T}$ referentes à interação binária entre
 os grupos que formam ligações de hidrogênio, em conjunto com a
 \autoref{tab:groups} em que é demonstrado o conjunto de grupos e subgrupos
-utilizados para a representação de cada molécula, temos um total de $xx$
+utilizados para a representação de cada molécula, temos um total de $23$
 parâmetros.
 
 Como visto, a quantidade de parâmetros existentes no problema é grande,
@@ -223,7 +223,7 @@ função objetivo.}
 \end{figure}
 
 O Algoritmo DiRect utilizado neste trabalho foi implementado na linguagem
-\code{JAVA} dentro do laboratório implementando a \emph{Interface}
+\code{JAVA} dentro do laboratório, fazendo uso da \emph{Interface}
 \code{Objective Function}, presente em \citeonline{ Apache2004}. 
 
 \subsection {Algoritmos estocásticos }
@@ -246,7 +246,7 @@ a probabilidade de que as próximas evoluam para o ótimo global não é tão grande
 quanto o esperado. Assim, são necessárias várias inicializações do algoritmo,
 selecionando a melhor das melhores.
 
-Este algoritmo foi implementado em \code{JAVA} por \citeonline{Jgap} e
+Este algoritmo foi implementado em \code{JAVA} por \citeonline{Jgap2008} e
 obtido através do pacote computacional \code{jgap}, disponível na
 internet para consulta.
 
@@ -268,7 +268,7 @@ Como já relatado por
 \citeonline{Soares2013a,Soares2013b,Possani2013} e \citeonline{Flores2016}, os
 problemas envolvendo os modelos do tipos F-SAC tratam-se de sistemas de equações
 altamente não lineares. Devidos à desafios matemáticos, métodos de busca local,
-como Newton, tem gerados problemas na otimização da função objetivo evido ao
+como Nelder Mead, tem gerados problemas na otimização da função objetivo evido ao
 seu \emph{mau comportamento} e diversos mínimos locais \cite{Possani2013}. Para
 transpor estas dificuldades, propõe-se novas técnicas, dentre elas, trabalhos em
 que se utilizam de métodos de otimização global.
@@ -279,7 +279,7 @@ base duas propriedades termodinâmicas relevantes ao mesmo, a pressão, $P$, e a
 entalpia de excesso, $h^{\rm{E}}$. Estas propriedades foram condensadas em uma
 mesma $OF$, como segue:
 \begin{equation}
-OF = AARD_{VLE} + AARD_{ h^{\rm{E}}}
+OF = AARD_{VLE} + 3\times AARD_{ h^{\rm{E}}}
 \end{equation}
 onde $AARD$ (\emph{Average Absolute Relative Deviation}) é o Desvio
 Médio Relativo Absoluto de cada propriedade, como segue:
@@ -296,45 +296,72 @@ h^{\rm{E}}_{i, \rm{exp}} - h^{\rm{E}}_{i, \rm{calc}} \right|}{ h^{\rm{E}}_{i,
 \end{subequations}
 onde $NP$ é o número de pontos experimentais$P$ é calculado utilizando a Lei de
 Raoult Modificada e $h^{\rm{E}}$ é calculado utilizando rotinas internas do
-modelo F-SAC+Disp.
+modelo F-SAC+Disp.O compilado com os dados experimentais utilizados neste
+trabalho encontram-se na \autoref{tab:dados}
 
-Neste trabalho não foi utilizado uma função objetiva da forma quadrática.
-Apesar de o valor absoluto do erro não ser uma função estritamente convexa,
-utiliza-se a mesma devido que em pequenos valores da $OF$ os mesmos tem um
-valor ainda mais reduzidos, como segue na demonstração da \autoref{tab:demo}.
-Aqui é possível observar, em valores genéricos, que a ordem de grandeza se
-altera muito caso fosse utilizada uma $OF$ quadrática, fazendo com que quando
-são combinados tipos de dados experimentais diferentes, $\ln\gamma_i$, $P$ e $
-h^{\rm{E}}$impossibilitem o uso da mesma.
-
-\begin{table}[H] 
-\renewcommand{\arraystretch}{1.3}
-\caption{Representação do comportamento da função objetivo utilizando
-diferentes formulações.}
-\label{tab:demo}
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\sisetup{table-format=3.2,round-mode=places,round-precision=2}
+\caption{Conjunto de dados experimentais utilizados na etapa de otimização.}
+\label{tab:dados}
 \footnotesize
 \begin{center}
-\begin{tabular}{
-S[table-format=4.2]
-S[table-format=2.3]
-S[table-format=4.6]}
+\begin{tabular}{lS[table-format=2.0]cSll}
 \toprule
-\multirow{2}{*}{$Erro$} & \multicolumn{2}{c}{Função objetivo}\\
-\cmidrule(lr{.5em}){2-3}
- & {$\left| Erro \right|$} & {$\left( Erro \right)^2$}\\
+\multirow{2}{*}{Tipo}& \multirow{2}{*}{$NP$}& \multicolumn{3}{c}{Parâmetro
+Constante} & \multirow{2}{*}{Referência.}\\
+\cmidrule(lr{.5em}){3-5}
+&&	{Parâm.}	&	{Valor}	&	{Unidade}		\\
 \midrule
-10		&	10		&	100	\\
-1			&	1		&	1	\\
-0.1		&	0.1		&	0.01	\\
-0.001		&	0.001	&	0.000001	\\
--0.001	&	0.001	&	0.000001	\\
--0.1		&	0.1		&	0.01	\\
--1		&	1		&	1	\\
--10		&	10		&	100	\\
+VLE	&17&	$P$	&	13	&	kPa	&	\cite{Voutsas2011}	\\
+VLE	&18&	$P$	&	19	&	kPa	&	\cite{Voutsas2011}	\\
+VLE	&16&	$P$	&	32	&	kPa	&	\cite{Voutsas2011}	\\
+VLE	&39&	$T$	&	323.15	&	K	&	\cite{Kurihara1995}	\\
+$h^{\rm{E}}$	&17&	$T$	&	298.15	&	K	&	\cite{Boyne1967}	\\
+$h^{\rm{E}}$	&15&	$T$	&	323.15	&	K	&	\cite{Larkin1975}	\\
+$h^{\rm{E}}$	&18&	$T$	&	331.15	&	K	&	\cite{Larkin1975}	\\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table} 
+
+% Neste trabalho não foi utilizado uma função objetiva da forma quadrática.
+% Apesar de o valor absoluto do erro não ser uma função estritamente convexa,
+% utiliza-se a mesma devido que em pequenos valores da $OF$ os mesmos tem um
+% valor ainda mais reduzidos, como segue na demonstração da \autoref{tab:demo}.
+% Aqui é possível observar, em valores genéricos, que a ordem de grandeza se
+% altera muito caso fosse utilizada uma $OF$ quadrática, fazendo com que quando
+% são combinados tipos de dados experimentais diferentes, $\ln\gamma_i$, $P$ e $
+% h^{\rm{E}}$impossibilitem o uso da mesma.
+% 
+% \begin{table}[H] 
+% \renewcommand{\arraystretch}{1.1}
+% \caption{Representação do comportamento da função objetivo utilizando
+% diferentes formulações.}
+% \label{tab:demo}
+% \footnotesize
+% \begin{center}
+% \begin{tabular}{
+% S[table-format=4.2]
+% S[table-format=2.3]
+% S[table-format=4.6]}
+% \toprule
+% \multirow{2}{*}{$Erro$} & \multicolumn{2}{c}{Função objetivo}\\
+% \cmidrule(lr{.5em}){2-3}
+%  & {$\left| Erro \right|$} & {$\left( Erro \right)^2$}\\
+% \midrule
+% 10		&	10		&	100	\\
+% 1			&	1		&	1	\\
+% 0.1		&	0.1		&	0.01	\\
+% 0.001		&	0.001	&	0.000001	\\
+% -0.001	&	0.001	&	0.000001	\\
+% -0.1		&	0.1		&	0.01	\\
+% -1		&	1		&	1	\\
+% -10		&	10		&	100	\\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \end{table} 
 
 \section{Resultados}
 Os resultados obtidos neste trabalho serão apresentados a seguir, diferenciando
@@ -343,61 +370,202 @@ resultados da mistura etanol/água na temperatura de $323$~K tanto de VLE quanto
 $h^{\rm{E}}$.
 
 \subsection{Resultados do Algoritmos DiRect}
-Para o algoritmo DiRect foram utilizados três diferentes conjuntos de
+Para o algoritmo DiRect foram utilizados quatro diferentes conjuntos de
 parametrização, demonstrados na \autoref{tab:resDiRect}, em conjunto com o
-resultado obtido pela função objetivo. Aqui, os valores $\varepsilon$ e MinSize
-são referentes a quantas vezes a $FO$ será avaliada em um mesmo poliedro e qual
-o critério no qual o poliedro não deverá ser mais dividido.
+resultado obtido pela função objetivo. Aqui, o valor de $\varepsilon$
+significa a Constante de Jones e MinSize  o critério de parada para o menor
+tamanho possível do poliedro.
 
 \begin{table}[H]
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.1}
 \sisetup{table-format=1.4,round-mode=places,round-precision=4}
 \caption{Conjunto de problemas executados neste trabalho utilizando o algoritmo
 genético.}
 \label{tab:resDiRect}
 \footnotesize
 \begin{center}
-\begin{tabular}{S[table-format=1.0]SSS}
+\begin{tabular}{cccS}
 \toprule
 {Conjunto} &{$\varepsilon$}	 &{MinSize} &{$FO$}	\\
 \midrule
-1&	0.001	&	0.001	&0.\\
-2&	0.001	&	0.001	&0.\\
-3&	0.001	&	0,001	&0.\\
+$A$&	{$10^{-4}$}	&	{$10^{-4}$}	&0.7084028881916212\\
+$B$&	{$10^{-3}$}	&	{$10^{-4}$}	&0.7083259294918753\\
+$C$&	{$10^{-4}$}	&	{$10^{-3}$}	&0.7084028881916212\\
+$D$&	{$10^{-3}$}	&	{$10^{-3}$}	&0.7083259294918753\\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table} 
 
-
-
+Como é possível observar na \autoref{tab:resDiRect} o algoritmo DiRect
+apresentou resultados muito pouco satisfatórios. Provavelmente este
+acontecimento é decorrente de alguma falha na implementação do método, uma vez
+que os testes foram para sistemas com apenas duas variáveis, o que possibilita
+a verificação visual do mesmo.
 
 \subsection{Resultados do Algoritmos Genético}
+Os resultados obtidos com o Algoritmo Genético foram obtidos utilizando as
+configurações padrão disponibilizadas por \citeonline{Jgap2008}. A configuração
+padrão deste algoritmo é um ranqueamento elitista da população, onde os
+primeiros $10\%$ dos indivíduos são clonados para a próxima geração, os
+$35\%$ seguintes passam pelo processo de Crossover, onde a proporção que segue
+em cada indivíduo é aleatória. Finalmente, os últimos $55\%$ sofrem mutação
+randômica na proporção de $1$ em cada $12$ genes (\emph{i.e.} $8.34\%$).
+
+Para o Algoritmo Genético foram executados três diferentes testes, alterando a
+população e o número de gerações, apresentados na \autoref{tab:resAG}. Para
+cada um dos conjuntos, o algoritmo foi executado $5$ vezes, sendo avaliado
+apenas o melhor valore da função objetivo.
 
 \begin{table}[H] 
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.1}
 \sisetup{table-format=3.0,round-mode=places,round-precision=0}
 \caption{Conjunto de problemas executados neste trabalho utilizando o algoritmo
 genético.}
 \label{tab:resAG}
 \footnotesize
 \begin{center}
-\begin{tabular}{S[table-format=1.0]SS
+\begin{tabular}{cSS
 S[table-format=0.4,round-mode=places,round-precision=4]}
 \toprule
-{Conjunto} &{População inicial}	 &{Gerações} &{$FO$}	\\
+{Conjunto} &{População}	 &{Gerações} &{$FO$}	\\
 \midrule
-1&	50	&	5	&0.\\
-2&	100	&	5	&0.\\
-3&	100	&	10	&0.\\
+(a)&	115	&	10	&0.705914215\\
+(b)&	230	&	10	&0.529921031\\
+(c)&	230	&	20	&0.273410347\\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table} 
 
+Nas Figuras \ref{fig:resAG1} e \ref{fig:resAG2} é possível observar os
+resultados do Algoritmo Genético para dados de VLE e $h^{\rm{E}}$
+respectivamente, para cada um dos conjuntos testados.
+Dentre os conjuntos testados, o que obteve o melhor resultado foi o cojunto
+(c).
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/1/ETHANOL-WATER.pdf}} { }
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/2/ETHANOL-WATER.pdf}} { }
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/3/ETHANOL-WATER.pdf}}
+\caption{Resultados do Algoritmo Genético para os dados de VLE nos três
+conjuntos testados.}
+\label{fig:resAG1} 
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/1/Default_PFD_Chart.pdf}} { }
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/2/Default_PFD_Chart.pdf}} { }
+\subfloat[]{\includegraphics[width=0.3\textwidth]
+{trabFinal/AG/3/Default_PFD_Chart.pdf}}
+\caption{Resultados do Algoritmo Genético para os dados de $h^{\rm{E}}$ nos três
+conjuntos testados.}
+\label{fig:resAG2}
+\end{figure}
 
 \subsection{Resultados do Algoritmos PSO}
+Os resultados obtidos com o algoritmo PSO utilizaram os seguintes valores para
+os parâmetros de ponderação:
+\\
+\begin{conditions}
+w_{inic}	& velocidade anterior da partícula no inicio da iteração	&	$=$ &$0.35$
+\\
+w_{fim}		& velocidade anterior da partícula no final da iteração	&	$=$&$0.65$ \\
+c_{s1}		& melhor posição da partícula		&	$=$&$0.20$\\
+c_{s2}		& melhor posição entre todas as partículas			&	$=$&$2.00$\\
+\end{conditions}
+% \\
+% \begin{conditions}
+% w_{inic}	&$0.35$	\\
+% w_{fim}		&$0.65$ \\
+% c_{s1}		&$0.20$\\
+% c_{s2}		&$2.00$\\
+% \end{conditions}
 
+Neste caso foram testados quatro diferentes combinações entre numero de
+iterações e número de partículas. As diferentes combinações estão apresentadas
+na \autoref{tab:resPSO}. Assim como no Algoritmo Genético, os resultados
+obtidos pelo PSO em cada um dos conjuntos é o valor final de um total de $5$
+vezes que o sistema foi inicializado.
+
+\begin{table}[H] 
+\renewcommand{\arraystretch}{1.1}
+\sisetup{table-format=3.0,round-mode=places,round-precision=0}
+\caption{Conjunto de problemas executados neste trabalho utilizando o algoritmo
+genético.}
+\label{tab:resPSO}
+\footnotesize
+\begin{center}
+\begin{tabular}{cSS
+S[table-format=0.4,round-mode=places,round-precision=4]}
+\toprule 
+{Conjunto} &{Particulas}	 &{Iterações} &{$FO$}	\\
+\midrule
+(a)&	20	&	50	&0.4932546196134516\\
+(b)&	20	&	100	&0.7251333915013122\\
+(c)&	40	&	100	&0.17843440905440078\\
+(d)&	40	&	50	&0.13962838780406414\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+Nas Figuras \ref{fig:resPSO1} e \ref{fig:resPSO2} é possível observar os
+resultados do algoritmo PSO para dados de VLE e $h^{\rm{E}}$ respectivamente,
+para cada um dos conjuntos testados. Dentre os conjuntos testados, o que obteve o melhor
+resultado foi o cojunto (c).
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/1/ETHANOL-WATER.pdf}} { }
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/2/ETHANOL-WATER.pdf}}
+
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/3/ETHANOL-WATER.pdf}} { }
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/4/ETHANOL-WATER.pdf}}
+\caption{Resultados do PSO para os dados de VLE nos três
+conjuntos testados.}
+\label{fig:resPSO1} 
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/1/Default_PFD_Chart.pdf}} { }
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/2/Default_PFD_Chart.pdf}}
+
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/3/Default_PFD_Chart.pdf}} { }
+\subfloat[]{\includegraphics[width=0.45\textwidth]
+{trabFinal/PSO/4/Default_PFD_Chart.pdf}}
+\caption{Resultados do PSO para os dados de $h^{\rm{E}}$ nos três
+conjuntos testados.}
+\label{fig:resPSO2}
+\end{figure}
+
+
+\section{Conclusão}
+O dentre os métodos utilizados para este trabalho, o que obteve o menor valor
+da função objetivo foi o algoritmo PSO utilizando a combinação de $x$
+partículas e $x$ iterações, apresentando valor $xxxx$ na $FO$. Apesar de ser
+possível eleger o melhor método, também pode-se concluir que nenhum dos métodos
+apresentados obteve um resultado satisfatório na correlação dos dados de
+equilíbrio líquido-vapor em conjunto com dados de $h^{\rm{E}}$. A deficiência
+observada aqui, provavelmente não está relacionada com a escolha do método de
+otimização e sim com o modelo coeficiente de atividade utilizado para os
+testes. Para trabalhos futuros, sugere-se a modificação no modelo de $\gamma_i$
+e/ou a escolha de outro modelo.
 
 
 

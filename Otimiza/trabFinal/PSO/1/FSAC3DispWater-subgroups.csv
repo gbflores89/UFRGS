@@ -1,0 +1,7 @@
+Group,SubGroup,MW,Rk,Qk,Disp,DispT,Opt.,Excl.
+CH2,CH3,15.035,37.735,166.6880505115386,0.0,0.0,true,false
+CH2,CH2,14.027,24.03,21.23,0,0,false,true
+CH2,CH,13.019,14.03,15.1875,0,0,false,true
+CH2,C,12.011,6.53,-8.73,0,0,false,true
+CH2OH,CH2OH,31.034,44.505,74.2062884241599,0.0,0.0,true,false
+H2O,H2O,18.015,29.45,83.09263124344123,0.0,0.0,true,false
