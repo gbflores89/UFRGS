@@ -78,7 +78,7 @@ entalpia de excesso ($h^{\rm{E}}$).
 
 O objetivo deste trabalho é a reprodução do trabalho de
 \citeonline{Haelssig2008}, porém verificando a capacidade do modelo F-SAC+Disp
-\citeonline{Flores2016} com os mesmos tipos de dados experimentais (VLE e
+\cite{Flores2016} com os mesmos tipos de dados experimentais (VLE e
 $h^{\rm{E}}$) utilizando diferentes métodos de otimização global e comparando
 as diferentes condições de cada um.
 
@@ -124,9 +124,9 @@ repulsão por meio de um perfil-$\sigma$ discretizado como segue:
 \begin{equation}
 \begin{aligned}
 \Delta W \left (T, m, n \right ) = \theta \left (T, m, n \right
-)\frac{\alpha '
+)&\frac{\alpha '
 \left (\sigma_m +\sigma_n\right )^2}{2}\\
- -& \frac{E^{\rm{HB}}\left (T, m, n \right )}{2} - \frac{\delta \left(T, m, n
+ &- \frac{E^{\rm{HB}}\left (T, m, n \right )}{2} - \frac{\delta \left(T, m, n
  \right )}{2}
 \end{aligned}
 \end{equation}
@@ -509,7 +509,7 @@ S[table-format=0.4,round-mode=places,round-precision=4]}
 {Conjunto} &{Particulas}	 &{Iterações} &{$FO$}	\\
 \midrule
 (a)&	20	&	50	&0.4932546196134516\\
-(b)&	20	&	100	&0.7251333915013122\\
+(b)&	20	&	100	&0.4971040713099037\\
 (c)&	40	&	100	&0.17843440905440078\\
 (d)&	40	&	50	&0.13962838780406414\\
 \bottomrule
@@ -557,15 +557,15 @@ conjuntos testados.}
 
 \section{Conclusão}
 O dentre os métodos utilizados para este trabalho, o que obteve o menor valor
-da função objetivo foi o algoritmo PSO utilizando a combinação de $x$
-partículas e $x$ iterações, apresentando valor $xxxx$ na $FO$. Apesar de ser
+da função objetivo foi o algoritmo PSO utilizando a combinação de $40$
+partículas e $50$ iterações, apresentando valor $0.1396$ na $FO$. Apesar de ser
 possível eleger o melhor método, também pode-se concluir que nenhum dos métodos
 apresentados obteve um resultado satisfatório na correlação dos dados de
 equilíbrio líquido-vapor em conjunto com dados de $h^{\rm{E}}$. A deficiência
 observada aqui, provavelmente não está relacionada com a escolha do método de
 otimização e sim com o modelo coeficiente de atividade utilizado para os
 testes. Para trabalhos futuros, sugere-se a modificação no modelo de $\gamma_i$
-e/ou a escolha de outro modelo.
+e/ou a escolha de outro modelo. 
 
 
 
