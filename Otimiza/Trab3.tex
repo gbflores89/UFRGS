@@ -6,13 +6,13 @@ de métrica variável, para uma série de funções objetivos.
 
 Métodos:
 \begin{itemize}
-  \item Busca (DFO) -- Simplex, Hooke, Jeeves e Powell;
+  \item Busca (DFO) -- Simplex, Hooke e Jeeves e Powell;
   \item Gradiente -- Máxima descida e gradientes conjugados (\code{cgrad});
   \item Quase-Newton -- BFGS e DFP;
   \item Newton -- Newton e Levenberg Marquard (\code{lmarqua})
 \end{itemize}
 \boxexercise{1}
-{
+{ 
 Tabela com comparativo dos diferentes métodos para os diferentes
 problemas. Deve-se executar cada algoritmo 100 vezes, com diferentes chutes
 iniciais gerados aleatoriamente. Hierarquizar os métodos e elencar os três
@@ -51,7 +51,7 @@ resolver o problema $j$, $d_j^*$ é a melhor qualidade da solução para o problema
 $j$, $d_{i,j}$ é a qualidade da solução para o problema $j$ definida como:
 \begin{equation}
 d_{i, j} = \frac{\left \| x_{i, j} - x_j^* \right \|}{\varepsilon_x}
-+\frac{\left | S_{i, j} - S_j^* \right |}{\varepsilon_S}
++\frac{\left | S(x_{i, j}) - S(x_j^*) \right |}{\varepsilon_S}
 \end{equation}
 onde $\varepsilon$ é a precisão da máquina, $\varepsilon_x$ é a tolerância na 
 variável independente, $\varepsilon_S$ é a tolerância na função objetivo,
@@ -72,3 +72,85 @@ diretório.
 {
 Algoritmo próprio (proposto pelo aluno, ou em dupla) que tenha performance
 comparável aos três melhores.}
+
+\subsection {Introdução}
+Foram executados apenas os algoritmos \code{hkjeeves}, \code{cgrad},
+\code{newton} e \code{lmarqua}, os demais métodos de otimização
+\code{ccomplex}, \code{steepdes}, \code{bfgs} e \code{dfp}, apresentaram erros
+na execução de todos os problemas.
+
+Obs.: O método \code{ccomplex} está com o nome do arquivo diferente do nome da
+função do mesmo nos arquivos disponibilizados no Moodle.
+
+\subsection {Resolução dos problemas}
+Para a resolução do exercício, foi implementado o \autoref{code:script},
+presente no \autoref{ap:trab3}, em Matlab\textsuperscript{\textregistered}. Em
+um único código foi possível executar os $13$ problemas propostos utilizando os
+$4$ métodos possíveis. Por fim, este código também contempla o cálculo da Eficácia
+($\theta$) Eficiência ($\chi$), Robustez ($\eta$) e Qualidade da solução obtida
+($\xi$) para cada método utilizado.
+
+\subsection {Resultados} 
+Os métodos foram ranqueados pela soma dos valores de todas as métrica utilizadas
+neste trabalho, sendo o maior valor o melhor método e o menor valor o pior. 
+Devido a mera coincidência da ordem de execução, os métodos apresentados nas
+Tabelas \ref{tab:res1} e \ref{tab:res2} já estão ranqueados.
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\sisetup{table-format=3.4,round-mode=places,round-precision=4}
+\caption{Resultados obtidos com cada método para os problemas propostos
+utilizando a política de chutes iniciais com valores no intervalo de $[0\;\ 2]$.}
+\label{tab:res1}
+\footnotesize
+\begin{center}
+\begin{tabular}{lSSSSS}
+\toprule
+\multirow{2}{*}{Método}& {Eficácia}& {Eficiência} & {Robustez} & {Qual. sol.}
+&\multicolumn{1}{c}{\multirow{2}{*}{Total}}\\
+& {$\theta$} & {$\chi$} & {$\eta$} & {$\xi$}&\\
+\midrule
+\code{hkjeeves}	&	39,89972997	&	50,38098074	&	100.	&	13,30526098	&	203,5859717
+\\
+\code{cgrad}	&	38,18960345	&	35,97782424	&	92,30769231	&	8,000048048	&	174,4751681	\\
+\code{newton}	&	22,41874463	&	14,87457198	&	38,46153846	&	15,38463975	&	91,13949482	\\
+\code{lmarqua}	&	13,8153285	&	16,67904777	&	38,46153846	&	7,700211197	&	76,65612593	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\sisetup{table-format=3.4,round-mode=places,round-precision=4}
+\caption{Resultados obtidos com cada método para os problemas propostos
+utilizando a política de chutes iniciais com valores no intervalo de $[-2\;\
+4]$.}
+\label{tab:res2}
+\footnotesize
+\begin{center}
+\begin{tabular}{lSSSSS}
+\toprule
+\multirow{2}{*}{Método}& {Eficácia}& {Eficiência} & {Robustez} & {Qual.sol.}
+&\multicolumn{1}{c}{\multirow{2}{*}{Total}}\\
+& {$\theta$} & {$\chi$} & {$\eta$} & {$\xi$}&\\
+\midrule
+\code{hkjeeves}	&	36,59551938	&	48,54099766	&	100.	&	17,17011135	&	202,3066284 \\
+\code{cgrad}	&	26,35520142	&	30,02923131	&	69,23076923	&	7,694121386	&	133,3093233	\\
+\code{newton}	&	17,32331114	&	13,21723285	&	30,76923077	&	15,38462484	&	76,69439959	\\
+\code{lmarqua}	&	8,041719122	&	8,174684847	&	15,38461538	&	7,692307692	&	39,29332705	\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+
+
+
+
+
+
+
+
+
+
