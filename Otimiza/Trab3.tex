@@ -12,7 +12,7 @@ Métodos:
   \item Newton -- Newton e Levenberg Marquard (\code{lmarqua})
 \end{itemize}
 \boxexercise{1}
-{ 
+{  
 Tabela com comparativo dos diferentes métodos para os diferentes
 problemas. Deve-se executar cada algoritmo 100 vezes, com diferentes chutes
 iniciais gerados aleatoriamente. Hierarquizar os métodos e elencar os três
@@ -110,11 +110,14 @@ utilizando a política de chutes iniciais com valores no intervalo de $[0\;\ 2]$.
 &\multicolumn{1}{c}{\multirow{2}{*}{Total}}\\
 & {$\theta$} & {$\chi$} & {$\eta$} & {$\xi$}&\\
 \midrule
-\code{hkjeeves}	&	39,89972997	&	50,38098074	&	100.	&	13,30526098	&	203,5859717
-\\
-\code{cgrad}	&	38,18960345	&	35,97782424	&	92,30769231	&	8,000048048	&	174,4751681	\\
-\code{newton}	&	22,41874463	&	14,87457198	&	38,46153846	&	15,38463975	&	91,13949482	\\
-\code{lmarqua}	&	13,8153285	&	16,67904777	&	38,46153846	&	7,700211197	&	76,65612593	\\
+\code{hkjeeves}	&	39,89972997	&	50,38098074	&	100.	&	13,30526098	&	
+203,5859717 \\
+\code{cgrad}	&	38,18960345	&	35,97782424	&	92,30769231	&	8,000048048	&
+174,4751681	\\
+\code{newton}	&	22,41874463	&	14,87457198	&	38,46153846	&	15,38463975	&
+91,13949482	\\
+\code{lmarqua}	&	13,8153285	&	16,67904777	&	38,46153846	&	7,700211197	&
+76,65612593	\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -135,15 +138,55 @@ utilizando a política de chutes iniciais com valores no intervalo de $[-2\;\
 &\multicolumn{1}{c}{\multirow{2}{*}{Total}}\\
 & {$\theta$} & {$\chi$} & {$\eta$} & {$\xi$}&\\
 \midrule
-\code{hkjeeves}	&	36,59551938	&	48,54099766	&	100.	&	17,17011135	&	202,3066284 \\
-\code{cgrad}	&	26,35520142	&	30,02923131	&	69,23076923	&	7,694121386	&	133,3093233	\\
-\code{newton}	&	17,32331114	&	13,21723285	&	30,76923077	&	15,38462484	&	76,69439959	\\
-\code{lmarqua}	&	8,041719122	&	8,174684847	&	15,38461538	&	7,692307692	&	39,29332705	\\
+\code{hkjeeves}	&	36,59551938	&	48,54099766	&	100.	&	17,17011135	&	
+202,3066284 \\
+\code{cgrad}	&	26,35520142	&	30,02923131	&	69,23076923	&	7,694121386	&
+133,3093233	\\
+\code{newton}	&	17,32331114	&	13,21723285	&	30,76923077	&	15,38462484	&
+76,69439959	\\
+\code{lmarqua}	&	8,041719122	&	8,174684847	&	15,38461538	&	7,692307692	&
+39,29332705	\\
 \bottomrule
 \end{tabular}
 \end{center}
 \end{table} 
 
+Como é possível observar nas Tabelas \ref{tab:res1} e \ref{tab:res2} o
+algoritmo \code{hkjeeves} apresentou o melhor resultado entre os algoritmos
+testados ficando significativamente à frente do segundo colocado, o algoritmo
+\code{cgrad}. Apesar de bastante claros, os resultados obtidos são bastante
+contraditórios em primeiro momento, pois demonstra que os métodos mais simples
+são melhores que os métodos que utilizam mais informação sobre o problema
+(\emph{i.e.} gradiente e hessiana), como por exemplo o algoritmo
+\code{lmarqua}. Na \autoref{tab:resBoleana} estão apresentados, de forma
+\emph{boleana} quais problemas cada método foi capaz de resolver na política de
+chutes inicias com valores entre $[0\;\ 2]$. Esta ultima tabela ajuda a elucidar os
+resultados pouco satisfatório para métodos melhores elaborados, presentes nas
+Tabelas \ref{tab:res1} e \ref{tab:res2} 
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\sisetup{table-format=3.4,round-mode=places,round-precision=4}
+\caption{Demonstrativo em matriz \emph{boleana} de quais problemas $j$ foram
+resolvidos com cada método $i$.}
+\label{tab:resBoleana}
+\footnotesize
+\begin{center}
+\begin{tabular}{lccccccccccccc}
+\toprule
+\backslashbox{$i$}{$j$}&{1}&{2}&{3}&{4}&{5}&{6}&{7}&{8}&
+{9} & {10} &{11}&{12}& {13}\\
+\midrule
+\code{hkjeeves} &\cmark&\cmark&\cmark&\cmark&\cmark&\cmark&
+\cmark&\cmark&\cmark&\cmark&\cmark&\cmark&\cmark\\
+\code{cgrad} &\cmark&\cmark&\cmark&\cmark&\cmark&\cmark&
+\cmark&\cmark&\cmark&\cmark&&\cmark&\cmark\\
+\code{newton} &\cmark&\cmark&&\cmark&&&&&\cmark&\cmark&&&\\
+\code{lmarqua} &\cmark&\cmark&&\cmark&&&&&\cmark&\cmark&&&\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
 
 
 

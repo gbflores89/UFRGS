@@ -10,7 +10,8 @@
 \usepackage[alf, bibjustif, abnt-etal-cite=2, abnt-etal-list=0]{abntex2cite}
 \usepackage{listings}
 \usepackage[version=3]{mhchem} % Formulas químicas automaticas, comando \ce{}
- 
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{lastpage}
@@ -25,6 +26,8 @@
 \usepackage{xifthen}
 \usepackage[miktex]{gnuplottex}
 \usepackage{gnuplottex}
+\usepackage{slashbox}
+\usepackage{makecell}
 
 \usepackage{threeparttable}
 \usepackage{multicol}
@@ -59,6 +62,11 @@
 
 \usepackage{palatino}
 \renewcommand{\textsc}[1]{\fontshape{sc} \fontfamily{\sfdefault} \selectfont #1}
+
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
 \mathchardef\period=\mathcode`.
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}
@@ -129,22 +137,22 @@
 \newcommand{\code}[1]{\texttt{#1}}
 
 \renewcommand{\lstlistingname}{Código}
-\lstset{ language=Matlab,
-  basicstyle=\ttfamily,
-  basicstyle=\fontfamily{pcr}\fontseries{m}\selectfont\footnotesize,
-  breaklines=true,
-  columns=fullflexible,
-  commentstyle=\color[rgb]{0,0.5,0},
-  numbers=left,
-  showstringspaces=false,
-  morekeywords={matlab2tikz},
-  keywordstyle=\color{blue},%
-  numberstyle=\tiny\sffamily\color{black},
-  frame=tb,
-  stringstyle=\color[rgb]{0.5,0,0.5},
-  numberstyle=\fontfamily{pcr}\fontseries{m}\selectfont\tiny,
-  aboveskip=10pt,belowskip=20pt,
-  }
+% \lstset{ language=Matlab,
+%   basicstyle=\ttfamily,
+%   basicstyle=\fontfamily{pcr}\fontseries{m}\selectfont\footnotesize,
+%   breaklines=true,
+%   columns=fullflexible,
+%   commentstyle=\color[rgb]{0,0.5,0},
+%   numbers=left,
+%   showstringspaces=false,
+%   morekeywords={matlab2tikz},
+%   keywordstyle=\color{blue},%
+%   numberstyle=\tiny\sffamily\color{black},
+%   frame=tb,
+%   stringstyle=\color[rgb]{0.5,0,0.5},
+%   numberstyle=\fontfamily{pcr}\fontseries{m}\selectfont\tiny,
+%   aboveskip=10pt,belowskip=20pt,
+%   }
 
 \usepackage{lastpage}
 \usepackage{fancyvrb}

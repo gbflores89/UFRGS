@@ -1,0 +1,50 @@
+
+\section {Programação Linear}
+\boxexercise{4}
+{  
+Uma refinaria de petróleo, na blendagem da gasolina, mistura quatro
+constituintes (cortes) do petróleo em três tipos de gasolina (A, B e C). O
+objetivo é simples - misturar adequadamente para maximizar o lucro. 
+A disponibilidade e o custo de cada um dos 4 constituintes é dado por: 
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\footnotesize
+\begin{center}
+\begin{tabular}{S[table-format=1.0]S[table-format=4.0]S[table-format=2.2,round-mode=places,round-precision=2]}
+\toprule
+{Constituent}&{\makecell{Maximum quantity \\ avaliable
+\\ (bbl/day)}}&{\makecell{Cost \\ per barrel (\$)}}\\
+\midrule
+1&3000&13.\\
+2&2000&15.3\\
+3&4000&14.6\\
+4&1000&14.9\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+Os requisitos de cada gasolina são: 
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\footnotesize
+\begin{center}
+\begin{tabular}{clS[table-format=2.2,round-mode=places,round-precision=2]}
+\toprule
+{Grade}&\multicolumn{1}{c}{Specification}&{\makecell{Selling price \\ per
+barrel (\$)}}\\
+\midrule
+A&\makecell[l]{Not more than $15\%$ of 1 
+\\ Not less than $40\%$ of 2
+\\ Not more than $50\%$ of 3} &16.2\\
+\hline
+B&\makecell[l]{Not more than $10\%$ of 1
+\\ Not less than $10\%$ of 2}&15.75\\
+\hline
+C&\makecell[l]{Not more than $20\%$ of 1}&15.3\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+}
+

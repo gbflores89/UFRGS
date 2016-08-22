@@ -1,0 +1,62 @@
+
+\section {Programação Mista Inteira Linear}
+\boxexercise{5}
+{  
+Uma das frases mais sem sentido, e utilizada muito no \emph{Facebook}, é ``a
+vida é feita de escolhas''. Na indústria, isto também é valido - e escolhas erradas
+podem custar caro (outra frase que é óbvia).
+
+Suponha que $6$ novos investimentos estão sendo considerados pela companhia para
+um horizonte de dois anos. Alguns não têm custo imediato, outros devem ser
+amortizados em um ou dois anos, imediatamente.  
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.1}
+\scriptsize
+\begin{center}
+\begin{tabular}{S[table-format=1.0]l
+S[table-format=6.0]
+S[table-format=6.0]
+S[table-format=4.0]
+S[table-format=6.0]}
+\toprule
+{Project}&{Description}&{\makecell{First-year \\ expenditure \\ (\$)}}
+&{\makecell{Second-year \\ expenditure \\ (\$)}}
+&{\makecell{Engineering \\ hours}}
+&{\makecell{Net \\ present \\ value (\$)}}\\
+\midrule
+1&\makecell[l]{Modify existing \\ production line \\ with new etchers}
+&300000 & 0& 4000& 100000\\
+\hline
+2&\makecell[l]{Build new \\ production line}
+&100000 & 300000& 7000& 150000\\
+\hline
+3&\makecell[l]{Automate new \\ production line}
+&0 & 200000& 2000& 35000\\
+\hline
+4&\makecell[l]{Install plating line}
+&50000 & 100000& 6000& 75000\\
+\hline
+5&\makecell[l]{Build waste \\ recovery plant}
+&50000 & 300000& 3000& 125000\\
+\hline
+6&\makecell[l]{Subcontract \\ waste disposal}
+&100000 & 200000& 600& 60000\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table} 
+
+Sua missão - escolher quem deve ser instalado, com as seguintes restrições: 
+\begin{itemize}
+  \item \$\$\$\$ Limitado: 
+  \begin{itemize}
+    \item 1° ano: 450 k 
+    \item 2° ano 400 k 
+  \end{itemize}
+  \item Horas de engenheiro: 10 k/ano
+  \item Projeto 1 ou 2 deve ser escolhido; 
+  \item Projeto 5 ou 6 deve ser escolhido; 
+\end{itemize}
+}
+
